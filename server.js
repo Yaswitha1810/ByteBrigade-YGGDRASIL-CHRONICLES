@@ -1,8 +1,12 @@
 //jshint esversion:6
 
 const express = require("express");
+const dbConnect = require("./config/db/dbConnect.js");
 
 const app = express();
+
+//Database COnnection
+dbConnect();
 
 const PORT = process.env.PORT || 3000
 
