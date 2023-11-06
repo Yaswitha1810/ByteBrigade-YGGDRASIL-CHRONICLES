@@ -1,11 +1,15 @@
 //jshint esversion:6
 
 const express = require("express");
+const dotenv = require("dotenv");
+const { userRegisterCtrl } = require("./controllers/users/usersCtrl.js")
+
+dotenv.config();
 const dbConnect = require("./config/db/dbConnect.js");
 
 const app = express();
 
-//Database COnnection
+//Database Connection
 dbConnect();
 
 const PORT = process.env.PORT || 3000
