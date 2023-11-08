@@ -1,13 +1,10 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 
 //create schema
 const userSchema = new mongoose.Schema({
-    firstName: {
-        required: [true, "First name is required"],
-        type: String,
-    },
-    LastName: {
-        required: [true, "Last name is required"],
+    userName: {
+        required: [true, "User Name is required"],
         type: String,
     },
     profilePhoto: {
@@ -52,7 +49,7 @@ const userSchema = new mongoose.Schema({
     },
     accountVerificationToken: String,
     accountVerificationTokenExpires: Date,
-    viewdBy: {
+    viewedBy: {
         type: [
             {
                 type: mongoose.Schema.Types.ObjectId,
@@ -93,6 +90,21 @@ const userSchema = new mongoose.Schema({
     },
     timestamps: true,
 });
+
+//hash password
+userSchema.pre("save", async function(next){
+    if(!this.isModified("password")){
+        next();
+    }
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password,salt);
+    next(); 
+});
+
+//match password
+userSchema.methods.isPasswordMatch = async function(){
+    return await bcrypt.compare(enteredPassword, this.password);
+}
 
 //schema to model
 const user = mongoose.model("user",userSchema);
