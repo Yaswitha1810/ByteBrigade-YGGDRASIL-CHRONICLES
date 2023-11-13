@@ -22,6 +22,10 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static("public"));
 app.set("view engine","ejs");
 
+//home page
+app.get("/",(req,res)=>{
+    res.render("home.ejs");
+});
 
 //Users Route
 app.use("/api/users", userRoutes);
@@ -36,9 +40,9 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000
 
-app.get("/", function(req, res){
-    res.send("<h1>This is our server</h1><h2>We are ByteBrigade</h2>");
-})
+// app.get("/", function(req, res){
+//     res.send("<h1>This is our server</h1><h2>We are ByteBrigade</h2>");
+// })
 
 app.listen(PORT, function(){
     console.log(`Server started on ${PORT}`);

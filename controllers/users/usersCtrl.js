@@ -16,7 +16,7 @@ const userRegisterCtrl = expressAsyncHandler( async (req,res)=>{
             email: req?.body?.email,
             password: req?.body?.password,
         });
-        res.render("home.ejs");
+        res.redirect("/");
     }catch(error){
         res.json(error);
     }
@@ -36,7 +36,7 @@ const loginUserCtrl = expressAsyncHandler(async(req,res)=>{
             isAdmin: userFound?.isAdmin,
             token: generateToken(userFound?._id),
         });
-        res.render("home.ejs");
+        res.redirect("/");
     }
     else{
         res.status(401)
@@ -126,36 +126,33 @@ const updateUserPasswordCtrl = expressAsyncHandler(async (req,res)=>{
 
 //following
 const followingUserCtrl = expressAsyncHandler(async (req,res)=>{
-   //1. find the user that you want to follow and update its follwers field
+   //1. find the user that you want to follow and update its followers field
    //2. update the login user following field
-   const {followId} = req.body;
-   const loginUserId = req.user.id;
-   
+    const {followId} = req.body;
+    const loginUserId = req.user.id;
+    
    //find the target user and check if the login id exist
-   const targetUser = await User.findById(followId);
+    const targetUser = await User.findById(followId);
 
 const alreadyFollowing = targetUser?.followers?.find(
     user =>user?.toString() === loginUserId.toString()
     );
 if(alreadyFollowing) throw new Error("already following");
    //1.finding the user you want to follow and update it's followers field
-   await User.findByIdAndUpdate(followId,{
+    await User.findByIdAndUpdate(followId,{
     $push: {followers: loginUserId},
     isFollowing: true,
-   },
-   {new: true }
-   );
+    },
+    {new: true }
+    );
 
 
    //2. update the login user following field
-   await User.findByIdAndUpdate(loginUserId,{
+    await User.findByIdAndUpdate(loginUserId,{
     $push: {following: followId},
-   },{new:true }
-   )
-   res.json("you have successfully followed this user")
-
-//    console.log({followId,loginUserId})
-          res.json("following API")
+    },{new:true }
+    );
+    res.json("you have successfully followed this user");
 })
 
 
