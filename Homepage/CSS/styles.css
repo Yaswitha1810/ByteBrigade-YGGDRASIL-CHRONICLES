@@ -1,0 +1,106 @@
+body{
+    font-family: "Montserrat";
+}
+
+
+
+#title{
+    background-color: #fff04c;
+    color: rgb(7, 7, 7);
+}
+
+
+.container-fluid{
+    padding:3% 15% 7%;
+    background-color: #fff04c;
+}
+
+
+h1{
+    font-family: "Caprasimo";
+    font-size: 3.5rem;
+    line-height: 1.5;
+}
+
+h2{
+    font-family: "montserrat";
+    font-size: 3rem;
+    line-height: 1.5;
+    
+}
+
+h3{
+    font-family: "Montserrat";
+    font-size: 1.4rem;
+    
+}
+
+p{
+    color: rgb(0, 0, 0);
+}
+
+
+/* Navigation bar */
+
+.navbar{
+    padding: 0 0 4.5rem;
+}
+
+.nav-item{
+    padding-left: 18px;
+    padding-right: 18px;
+    
+}
+
+.nav-link{
+    font-size: 1.2rem;
+    font-family:"Montserrat" ;
+    color: rgb(0, 0, 0);
+}
+
+.navbar-brand{
+    font-family: "Ubuntu";
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+}
+
+/* Download Buttons */
+
+.download-button{
+    margin: 5% 3% 5% 0;
+}
+.category-button{
+    margin: 2% 3% auto auto;
+}
+
+/* Title image */
+
+.title-image{
+    width: 60%;
+    position: absolute;
+   height: 550px;
+   width: 300px;
+   left: 65%;
+}
+.blog-img{
+    width: 570px;
+    height: 450px;
+    margin: 5% 3% 3% auto;
+}
+
+
+/* Features Section */
+
+#features{
+    padding: 7% 15%;
+    background-color: #fff;
+    position: relative;
+    z-index: 1;
+}
+
+.feature-box{
+    text-align: center;
+    padding: 5%;
+}
+
