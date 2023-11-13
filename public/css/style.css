@@ -135,7 +135,7 @@ form .form-content .input-box{
 }
 .form-content .input-box input:focus
 .form-content .input-box input:valid{
-  border-color:#8abce1;  
+    border-color:#8abce1;  
 }
 .form-content .input-box i{
     position:absolute;

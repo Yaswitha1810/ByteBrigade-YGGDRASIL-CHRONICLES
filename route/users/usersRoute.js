@@ -15,6 +15,13 @@ const authMiddleware = require("../../middleware/auth/authMiddleware.js");
 const userRoutes= express.Router();
 
 
+
+userRoutes.get("/login",(req,res)=>{
+    res.render("login.ejs");
+});
+userRoutes.get("/register",(req,res)=>{
+    res.render("login.ejs");
+})
 userRoutes.post("/register", userRegisterCtrl );
 userRoutes.post("/login",loginUserCtrl);
 userRoutes.get("/",authMiddleware, fetchUsersCtrl);
