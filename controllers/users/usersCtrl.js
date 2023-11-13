@@ -2,6 +2,7 @@ const expressAsyncHandler = require("express-async-handler");
 const User = require("../../model/user/User");
 const generateToken = require("../../config/token/generateToken");
 const validateMongodbId = require("../../utils/validateMongodbId");
+const path = require('path');
 
 //Register
 const userRegisterCtrl = expressAsyncHandler( async (req,res)=>{
@@ -15,7 +16,7 @@ const userRegisterCtrl = expressAsyncHandler( async (req,res)=>{
             email: req?.body?.email,
             password: req?.body?.password,
         });
-        res.json(user);
+        res.render("home.ejs");
     }catch(error){
         res.json(error);
     }
@@ -23,6 +24,7 @@ const userRegisterCtrl = expressAsyncHandler( async (req,res)=>{
 
 //Login
 const loginUserCtrl = expressAsyncHandler(async(req,res)=>{
+    console.log("suhaZJK");
     const { email,password }= req.body;
     const userFound = await User.findOne({email: req?.body?.email});
     if(userFound && (await userFound.isPasswordMatched(password))){
@@ -34,10 +36,11 @@ const loginUserCtrl = expressAsyncHandler(async(req,res)=>{
             isAdmin: userFound?.isAdmin,
             token: generateToken(userFound?._id),
         });
+        res.render("home.ejs");
     }
     else{
         res.status(401)
-        throw new Error("invalid Login credentials");
+        throw new Error("Invalid Login credentials");
     }
 });
 
