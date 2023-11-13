@@ -57,6 +57,7 @@ const deleteUserCtrl = expressAsyncHandler(async (req,res)=>{
     validateMongodbId(id); 
     try{
         const deletedUser = await User.findByIdAndDelete(id);
+        res.json({mssg: "deletion done!"});
     }catch(error){
         res.json(error);
     }
@@ -68,7 +69,7 @@ const fetchUserDetailsCtrl = expressAsyncHandler(async (req,res)=> {
 
     validateMongodbId(id);
     try{
-        const user = await User.findById(id);
+        const user = await User.findById(id).populate("posts");
         res.json(user);
     }catch(error){
         res.json(error);
@@ -81,6 +82,7 @@ const userProfileCtrl = expressAsyncHandler(async (req,res)=>{
     validateMongodbId(id);
     try{
         const myProfile =await User.findById(id);
+        res.json(myProfile);
     }catch(error){
         res.json(error);
     }
@@ -90,7 +92,7 @@ const userProfileCtrl = expressAsyncHandler(async (req,res)=>{
 const updateUserCtrl = expressAsyncHandler( async (req,res)=>{
     const { _id } = req?.user;
     validateMongodbId(_id);
-    const user = awaitUser.findByIdAndUpdate(_id,
+    const user = await User.findByIdAndUpdate(_id,
         {
             userName: req?.body?.userName,
             email: req?.body?.email,
@@ -99,6 +101,7 @@ const updateUserCtrl = expressAsyncHandler( async (req,res)=>{
         {
             new: true, runValidators: true,
         })
+    res.json(user);
 });
 
 //update password
@@ -111,9 +114,11 @@ const updateUserPasswordCtrl = expressAsyncHandler(async (req,res)=>{
     if(password) {
         user.password = password;
         const updatedUser = await user.save();
-
+        //console.log("password updated" + password);
+        res.json(updatedUser);
     }
-    return ;
+    res.json(user);
+    //console.log("password not updated");
 });
 module.exports = { userRegisterCtrl, 
                     loginUserCtrl, 

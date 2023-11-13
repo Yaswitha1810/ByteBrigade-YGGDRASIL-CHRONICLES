@@ -24,7 +24,7 @@ const authMiddleware = expressAsyncHandler(async (req,res,next)=>{
         }
     }
     else{
-        throw new Error ("There is no token attached");
+        throw new Error ("There is no token attached in header");
     }
 });
 
