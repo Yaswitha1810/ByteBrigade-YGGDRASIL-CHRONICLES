@@ -30,7 +30,8 @@ app.use(errorHandler);
 const PORT = process.env.PORT || 3000
 
 app.get("/", function(req, res){
-    res.send("this is our server");
+    //console.log(req);
+    res.send("<h1>This is our server</h1><h2>We are ByteBrigrade</h2>");
 })
 
 app.listen(PORT, function(){

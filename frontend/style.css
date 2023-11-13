@@ -11,7 +11,7 @@ body{
     display: flex;
     align-items:center;
     justify-content:center;
-    background:#8abce1;
+    background:rgb(218, 199, 54);
 }
 .container{
     position: relative;
@@ -177,4 +177,9 @@ form .form-content label{
 form .form-content label:hover{
     
     text-decoration: underline;
+}
+form .form-content .login-text
+form .form-content .signup-text{
+    text-align: center;
+    margin-top: 25px;
 }
