@@ -10,6 +10,7 @@
   "author": "ByteBrigade",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.6.2",
     "bad-words": "^3.0.4",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
