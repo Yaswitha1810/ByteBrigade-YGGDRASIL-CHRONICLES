@@ -9,9 +9,9 @@ const dbConnect = require("./config/db/dbConnect.js");
 const userRoutes = require("./route/users/usersRoute.js");
 const postRoute = require("./route/posts/postRoute.js");
 const commentRoute = require("./route/comment/commentRoute.js");
-const emailMsg = require("./route/EmailMessaging/emailMsgRoute.js");
-const { errorHandler, notFound } = require("./middleware/error/errorHandler.js");
 const emailMsgRoute = require("./route/EmailMessaging/emailMsgRoute.js");
+const categoryRoute = require("./route/category/categoryRoute.js");
+const { errorHandler, notFound } = require("./middleware/error/errorHandler.js");
 
 const app = express();
 
@@ -41,6 +41,9 @@ app.use("/api/comments",commentRoute);
 
 //email Messaging
 app.use("/api/email",emailMsgRoute);
+
+//category route
+app.use("/api/category",categoryRoute);
 
 //error handler
 app.use(notFound);
