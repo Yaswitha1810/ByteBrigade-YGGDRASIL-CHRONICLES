@@ -366,21 +366,45 @@ footer ul a:hover {
 
 /* SINGLE POST */
 
-. {
+.singlepost {
     margin: 6rem 0 2rem;
     align-items: center;
+}
+
+.singlepost__thumbnail {
+    margin: 1.5rem 0 1rem;
 }
 
 .singlepost__container {
     width: var(--form-width);
     background: var(--color-gray-700);
-    padding: 1rem 2rem 2rem;
+    padding: 1rem 2rem 3rem;
 
 }
 
 .singlepost__container p {
     margin-top: 1rem;
     line-height: 1.7;
+}
+
+
+/* CATEGORY POST */
+
+.category__title {
+    height: 15rem;
+    margin-top: 4.5rem;
+    background: var(--color-gray-700);
+    display: grid;
+    place-items: center;
+
+}
+
+/* EMPTY PAGES */
+
+.empty__page {
+    height: 70vh;
+    display: grid;
+    place-content: center;
 }
 
 
@@ -515,6 +539,8 @@ footer ul a:hover {
 
 
 
+
+
 }
 
 /* RESPONSIVE (SMALL DEVICES) */
@@ -557,5 +583,12 @@ footer ul a:hover {
 
     .search__bar-container {
         width: var(--container-width-md);
+    }
+
+    /* SINGLE POST */
+
+    .siglepost__container {
+        background: transparent;
+        padding: 0;
     }
 }
