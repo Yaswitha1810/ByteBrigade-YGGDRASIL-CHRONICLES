@@ -92,10 +92,10 @@ const userSchema = new mongoose.Schema({
 });
 
 //virtual method to populate user post
-userSchema.virtual('posts',{
-    ref: 'Post',
-    foreignField: 'user',
-    localField: '_id',
+userSchema.virtual("posts",{
+    ref: "Post",
+    foreignField: "user",
+    localField: "_id",
 });
 
 //hash password
@@ -114,6 +114,6 @@ userSchema.methods.isPasswordMatched = async function(enteredPassword){
 }
 
 //schema to model
-const user = mongoose.model("user",userSchema);
+const User = mongoose.model("User",userSchema);
 
-module.exports = user
+module.exports = User;

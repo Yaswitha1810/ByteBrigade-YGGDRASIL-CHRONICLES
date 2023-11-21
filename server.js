@@ -11,6 +11,7 @@ const postRoute = require("./route/posts/postRoute.js");
 const commentRoute = require("./route/comment/commentRoute.js");
 const emailMsgRoute = require("./route/EmailMessaging/emailMsgRoute.js");
 const categoryRoute = require("./route/category/categoryRoute.js");
+const groupRoute = require("./route/group/groupRoute.js");
 const { errorHandler, notFound } = require("./middleware/error/errorHandler.js");
 
 const app = express();
@@ -45,6 +46,9 @@ app.use("/api/email",emailMsgRoute);
 
 //category route
 app.use("/api/category",categoryRoute);
+
+//group route
+app.use("/api/groups",groupRoute);
 
 //error handler
 app.use(notFound);
