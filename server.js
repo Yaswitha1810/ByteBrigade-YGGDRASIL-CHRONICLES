@@ -3,9 +3,12 @@
 const express = require("express");
 const dotenv = require("dotenv");
 dotenv.config();
-const ejs = require("ejs");
 const bodyParser = require('body-parser');
+const cookieParser = require("cookie-parser");
+
 const dbConnect = require("./config/db/dbConnect.js");
+
+const homePage = require("./controllers/homepage/homePage.js");
 const userRoutes = require("./route/users/usersRoute.js");
 const postRoute = require("./route/posts/postRoute.js");
 const commentRoute = require("./route/comment/commentRoute.js");
@@ -13,6 +16,7 @@ const emailMsgRoute = require("./route/EmailMessaging/emailMsgRoute.js");
 const categoryRoute = require("./route/category/categoryRoute.js");
 const groupRoute = require("./route/group/groupRoute.js");
 const { errorHandler, notFound } = require("./middleware/error/errorHandler.js");
+const checkUser = require("./middleware/auth/checkUser.js");
 
 const app = express();
 
@@ -21,16 +25,19 @@ dbConnect();
 
 //Middleware
 app.use(express.json());
-//app.use(bodyParser.json());
-//app.use(cors()) (use later)
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.json());
 app.use(express.static("public"));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(cookieParser());
+
+//view engine
 app.set("view engine","ejs");
 
+//check user
+app.get("*",checkUser);
+
 //home page
-app.get("/",(req,res)=>{
-    res.render("home.ejs");
-});
+app.get("/",homePage);
 
 //Users Route
 app.use("/api/users", userRoutes);

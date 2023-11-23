@@ -21,7 +21,7 @@ const fetchAllCategoryCtrl = expressAsyncHandler(async(req,res)=>{
         const categories = await Category.find({})
             .populate("user")
             .sort("-createdAt");
-            res.json(categories);
+        res.json(categories);
     }catch(error){
         res.json(error); 
     }

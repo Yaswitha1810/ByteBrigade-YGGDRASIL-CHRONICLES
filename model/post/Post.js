@@ -47,7 +47,7 @@ const postSchema = new mongoose.Schema({
     },
     image: {
         type: String,
-        default: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1542435503-956c469947f6%3Fauto%3Dformat%26fit%3Dcrop%26q%3D80%26w%3D1000%26ixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8N3wxMjY0NDk1fHxlbnwwfHx8fHw%253D&tbnid=oSBwTJuNbuwlDM&vet=12ahUKEwic0qTG47uCAxVIamwGHU69Cd8QMygWegUIARCWAQ..i&imgrefurl=https%3A%2F%2Funsplash.com%2Fcollections%2F1264495%2Fwriting%252Fblogging-aesthetic&docid=XGPg6HX6pfRthM&w=1000&h=750&q=aesthetic%20blog%20pictures&ved=2ahUKEwic0qTG47uCAxVIamwGHU69Cd8QMygWegUIARCWAQ",
+        default: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdcc4UQ5litb7WOp0gZTnDdaXvf8jceHKizg&usqp=CAU",
     },
 },{
     toJSON: {

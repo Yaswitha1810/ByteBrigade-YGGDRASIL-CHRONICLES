@@ -1,4 +1,6 @@
 const expressAsyncHandler = require("express-async-handler");
+const request = require("request");
+
 const User = require("../../model/user/User");
 const generateToken = require("../../config/token/generateToken");
 const validateMongodbId = require("../../utils/validateMongodbId");
@@ -16,6 +18,8 @@ const userRegisterCtrl = expressAsyncHandler( async (req,res)=>{
             email: req?.body?.email,
             password: req?.body?.password,
         });
+        const token = generateToken(user._id);
+        res.cookie('jwt' , token, {httpOnly: true, maxAge: 20*4*60*60*1000});
         res.redirect("/");
     }catch(error){
         res.json(error);
@@ -27,19 +31,23 @@ const loginUserCtrl = expressAsyncHandler(async(req,res)=>{
     const { email,password }= req.body;
     const userFound = await User.findOne({email: req?.body?.email});
     if(userFound && (await userFound.isPasswordMatched(password))){
-        res.json({
-            _id: userFound?._id,
-            userName: userFound?.userName,
-            email: userFound?.email,
-            profilePhoto: userFound?.profilePhoto,
-            isAdmin: userFound?.isAdmin,
-            token: generateToken(userFound?._id),
-        });
-        //res.redirect("/");
+        const token = generateToken(userFound?._id);
+        res.cookie('jwt' , token, {httpOnly: true, maxAge: 20*4*60*60*1000});
+        res.redirect("/");
     }
     else{
         res.status(401)
         throw new Error("Invalid Login credentials");
+    }
+});
+
+//logout
+const logoutUserCtrl = expressAsyncHandler(async (req,res)=>{
+    try{
+        res.cookie('jwt','',{maxAge: 1});
+        res.redirect("/");
+    }catch(error){
+        res.json(error);
     }
 });
 
@@ -177,7 +185,8 @@ const unfollowUserCtrl = expressAsyncHandler(async (req, res) => {
     res.json("you have succesfully unfollowed this user")
 });
 module.exports = { userRegisterCtrl, 
-                    loginUserCtrl, 
+                    loginUserCtrl,
+                    logoutUserCtrl, 
                     fetchUsersCtrl, 
                     deleteUserCtrl,
                     fetchUserDetailsCtrl,

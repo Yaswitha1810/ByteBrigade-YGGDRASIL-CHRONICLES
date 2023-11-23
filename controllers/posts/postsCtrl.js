@@ -1,6 +1,7 @@
 const Post = require("../../model/post/Post");
 const expressAsyncHandler = require("express-async-handler");
 const validateMongodbId = require("../../utils/validateMongodbId");
+const moment = require("moment");
 //const Filter = require("bad-words");
 //blocking user is not done!!
 //uploading photo also!!
@@ -20,7 +21,7 @@ const createPostCtrl = expressAsyncHandler(async (req,res) => {
 const fetchPostsCtrl = expressAsyncHandler(async (req,res)=>{
     try{
         const posts = await Post.find({}).populate("user");
-        res.json(posts);
+        res.render('post',{moment,posts});
     }catch(error){
         res.json(error);
     }

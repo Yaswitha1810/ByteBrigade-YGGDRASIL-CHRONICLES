@@ -2,6 +2,7 @@ const express = require("express");
 const { 
     userRegisterCtrl,
     loginUserCtrl,
+    logoutUserCtrl,
     fetchUsersCtrl,
     deleteUserCtrl,
     fetchUserDetailsCtrl,
@@ -24,6 +25,7 @@ userRoutes.get("/register",(req,res)=>{
 })
 userRoutes.post("/register", userRegisterCtrl );
 userRoutes.post("/login",loginUserCtrl);
+userRoutes.post("/logout",authMiddleware,logoutUserCtrl);
 userRoutes.get("/",authMiddleware, fetchUsersCtrl);
 userRoutes.get("/profile/:id", authMiddleware, userProfileCtrl);
 userRoutes.put("/:id",authMiddleware, updateUserCtrl);
