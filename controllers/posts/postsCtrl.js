@@ -1,27 +1,81 @@
 const Post = require("../../model/post/Post");
+const Category = require("../../model/category/Category");
+
 const expressAsyncHandler = require("express-async-handler");
-const validateMongodbId = require("../../utils/validateMongodbId");
+const fs = require("fs");
 const moment = require("moment");
+const path = require("path");
+const validateMongodbId = require("../../utils/validateMongodbId");
+const cloudinaryUploadImg = require("../../utils/cloudinary");
+
 //const Filter = require("bad-words");
 //blocking user is not done!!
 //uploading photo also!!
 
-const createPostCtrl = expressAsyncHandler(async (req,res) => {
-    validateMongodbId(req.body.user);
-    //const filter = new Filter();
+//get create page
+const getCreatePageCtrl = expressAsyncHandler(async(req,res)=>{
     try{
-        const post = await Post.create(req.body);
-        res.json(post)
+        const categories = await Category.find({});
+        res.render('add-blog',{categories});
     }catch(error){
         res.json(error);
     }
 });
 
+//create post
+const createPostCtrl = expressAsyncHandler(async (req,res) => {
+    validateMongodbId(req.user._id);
+    //const filter = new Filter();
+    const localPath = `public/images/post/${req.file.filename}`;
+    const imgUploaded = await cloudinaryUploadImg(localPath);
+    try{
+        const post = await Post.create({
+            ...req.body,
+            image: imgUploaded?.url,
+            user: req?.user?._id});
+        fs.unlinkSync(localPath);
+        res.redirect("/api/posts/"+ post._id);
+    }catch(error){
+        res.json(error);
+    }
+});
+
+//fetch post of certain category
+const fetchCategoryPostCtrl = expressAsyncHandler(async(req,res)=>{
+    const { id } = req?.params;
+    //console.log(search);
+    try{
+        const categoryName = await Category.findById(id);
+        const posts = await Post.find({category: categoryName.title}).populate("user").sort({_id: -1});
+        const categories = await Category.find({});
+        res.render("all-blogs",{moment,posts,categories});
+    }catch(error){
+        res.json(error);
+    }
+});
+
+//search
+const searchPostsCtrl = expressAsyncHandler(async(req,res)=>{
+    const search = req?.body?.category;
+    if(search != '' ){
+        try{
+            const category = await Category.findOne({title: search}).sort({_id: -1});
+            res.redirect("/api/posts/category/"+ category._id);
+        }catch(error){
+            res.json(error);
+        }
+    }else{
+        res.redirect("back")
+    }
+});
+
 //fetch all posts
 const fetchPostsCtrl = expressAsyncHandler(async (req,res)=>{
+
     try{
-        const posts = await Post.find({}).populate("user");
-        res.render('post',{moment,posts});
+        const posts = await Post.find({}).populate("user").sort({_id: -1});
+        const categories = await Category.find({});
+        res.render('all-blogs',{moment,posts,categories});
     }catch(error){
         res.json(error);
     }
@@ -32,11 +86,11 @@ const fetchPostCtrl = expressAsyncHandler(async (req,res)=>{
     const { id } = req.params;
     validateMongodbId(id);
     try{
-        const post = await Post.findById(id).populate("user").populate("likes").populate("dislikes");
+        const post = await Post.findById(id).populate("user").populate("likes").populate("dislikes").sort({_id: -1});
         await Post.findByIdAndUpdate(id,{
             $inc: {numViews: 1},
         },{new: true});
-        res.json(post);
+        res.render('blog',{moment,post});
     }catch(error){
         res.json(error);
     }
@@ -146,8 +200,11 @@ const toggleAddDislikeToPostCtrl = expressAsyncHandler(async(req,res)=>{
     }
 });
 
-module.exports = { createPostCtrl,
+module.exports = {  getCreatePageCtrl,
+                    createPostCtrl,
+                    searchPostsCtrl,
                     fetchPostsCtrl,
+                    fetchCategoryPostCtrl,
                     fetchPostCtrl,
                     updatePostCtrl,
                     deletePostCtrl,

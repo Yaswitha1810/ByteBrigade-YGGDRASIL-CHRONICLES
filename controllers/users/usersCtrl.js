@@ -1,5 +1,5 @@
 const expressAsyncHandler = require("express-async-handler");
-const request = require("request");
+const fs = require("fs");
 
 const User = require("../../model/user/User");
 const generateToken = require("../../config/token/generateToken");
@@ -76,7 +76,6 @@ const deleteUserCtrl = expressAsyncHandler(async (req,res)=>{
 //user details
 const fetchUserDetailsCtrl = expressAsyncHandler(async (req,res)=> {
     const { id } = req.params;
-
     validateMongodbId(id);
     try{
         const user = await User.findById(id).populate("posts");
@@ -180,7 +179,6 @@ const unfollowUserCtrl = expressAsyncHandler(async (req, res) => {
     },
     {new:true}
     );
-     
     res.json("you have succesfully unfollowed this user")
 });
 
@@ -190,14 +188,11 @@ const blockUserCtrl = expressAsyncHandler(async(req,res) => {
     validateMongodbId(id);
 
     const user = await User.findByIdAndUpdate(
-        id,
-         {
-          isBlocked: true,
-         },
-         {new: true}
-         );
-         res.json(user);
-
+        id,{
+            isBlocked: true,
+        },{new: true}
+    );
+    res.json(user);
 });
 
 //unBlock user
@@ -206,34 +201,31 @@ const unBlockUserCtrl = expressAsyncHandler(async(req,res) => {
     validateMongodbId(id);
 
     const user = await User.findByIdAndUpdate(
-        id,
-         {
-          isBlocked: false,
-         },
-         {new: true}
-         );
-         res.json(user);
-
+        id,{
+            isBlocked: false,
+        },{new: true}
+    );
+    res.json(user);
 });
 
 //generate token 
 
 //profile photo upload
+const profilePhotoUploadCtrl = expressAsyncHandler(async (req, res) => {
+    //Find the login user
+    const { _id } = req.user;
 
-const profilePhotoUploadCtrl = expressAsyncHandler(async(req,res) => {
-   //find the login user
-    const {_id} = req.user;
-    const localPath = 'public/images/profile/${req.file.filename}';
-
-    const imgUploaded =await cloudinaryUploadImg(localPath);
-
-    const foundUser =await User.findByIdAndUpdate(_id,{
-        profilePhoto: imgUploaded?.url,
-        },{ new:true }
-    );
-    console.log(imgUploaded);
+    //1. Get the oath to img
+    const localPath = `public/images/profile/${req.file.filename}`;
+    //2.Upload to cloudinary
+    const imgUploaded = await cloudinaryUploadImg(localPath);
+    const foundUser = await User.findByIdAndUpdate(_id,
+                        { profilePhoto: imgUploaded?.url,},
+                        { new: true });
+    fs.unlinkSync(localPath);
     res.json(foundUser);
-});
+    });
+
 
 module.exports = { profilePhotoUploadCtrl,
                     userRegisterCtrl, 
