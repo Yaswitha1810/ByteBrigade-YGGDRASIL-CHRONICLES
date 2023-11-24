@@ -3,6 +3,7 @@
     --color-primary-light: hsl(242, 91%, 69%, 18%);
     --color-primary-variant: #5854c7;
     --color-red: #da0f3f,
+    --color-red-light: #f07271
     --color-red-light: hsl(346, 87%, 46%, 15%);
     --color-green: #00c476;
     --color-green-light: hsl(156, 100%, 38%, 15%);
@@ -34,6 +35,7 @@
     appearance: 0;
     list-style: none;
     text-decoration: none;
+    box-sizing: border-box;
 }
 
 body{
@@ -407,6 +409,67 @@ footer ul a:hover {
     place-content: center;
 }
 
+/* GENERAL FORM */
+
+.form__section {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+
+.form__section-container {
+    width: var(--form-width);
+}
+
+.alert__message {
+    padding: 0.8rem 1.4rem;
+    margin-bottom: 1rem;
+    border-radius: var(--card-border-radius-2);
+}
+
+.alert__message {
+    background: var(--color-red-light);
+    color: var(--color-red);
+}
+
+.alert__message.success {
+    background: var(--color-green-light);
+    color: var(--color-green);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form__control {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.form__control.inline {
+    flex-direction: row;
+    align-items: center;
+}
+
+input, textarea, select {
+    padding: 0.8rem 1.4rem;
+    background-color: var(--color-gray-700);
+    border-radius: var(--card-border-radius-2);
+    resize: none;
+    color: var(--color-white);
+}
+
+.form__section-small {
+    margin-top: 1rem;
+    display: block;
+}
+
+.form__section small a {
+    color: var(--color-primary);
+}
 
 
 /* RESPONSIVE (MEDIUM DEVICES) */
@@ -537,8 +600,11 @@ footer ul a:hover {
         width: 60%;
     }
 
+    /* GENERAL FORM */
 
-
+    .form__section-container {
+        padding: 3rem;
+    }
 
 
 }
@@ -589,6 +655,12 @@ footer ul a:hover {
 
     .siglepost__container {
         background: transparent;
+        padding: 0;
+    }
+
+    /* GENERAL FORM */
+
+    .form__section-container {
         padding: 0;
     }
 }
