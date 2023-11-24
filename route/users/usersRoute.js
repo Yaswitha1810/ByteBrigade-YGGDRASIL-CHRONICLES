@@ -12,8 +12,13 @@ const {
     unfollowUserCtrl,
     blockUserCtrl,
     unBlockUserCtrl,
+    profilePhotoUploadCtrl,
 } = require("../../controllers/users/usersCtrl.js");
 const authMiddleware = require("../../middleware/auth/authMiddleware.js");
+const { profilePhotoUpload,
+    profilePhotoResize,
+ } = require("../../middleware/uploads/profilePhotoUpload.js");
+   
 const userRoutes= express.Router();
 
 
@@ -28,6 +33,13 @@ userRoutes.post("/register", userRegisterCtrl );
 userRoutes.post("/login",loginUserCtrl);
 userRoutes.get("/",authMiddleware, fetchUsersCtrl);
 userRoutes.get("/profile/:id", authMiddleware, userProfileCtrl);
+userRoutes.put(
+    "/profilephoto-upload",
+authMiddleware,
+profilePhotoUpload.single("image"),
+profilePhotoResize,
+ profilePhotoUploadCtrl
+ );
 userRoutes.put("/:id",authMiddleware, updateUserCtrl);
 userRoutes.put("/password",authMiddleware, updateUserPasswordCtrl);
 userRoutes.put("/:follow",authMiddleware, followingUserCtrl);
