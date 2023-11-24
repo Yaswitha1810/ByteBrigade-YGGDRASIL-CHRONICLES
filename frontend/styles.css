@@ -190,14 +190,15 @@ nav button {
 /* GENERAL POST */
 
 .post__thumbnail {
-    border-radius: var(--card-border-radius-5) 0;
+    /* border-radius: var(--card-border-radius-5) 0; */
+    border-radius: var(--card-border-radius-3);
     border: 1rem solid var(--color-gray-900);
     overflow: hidden;
     margin-bottom: 1.6rem;
 }
 
 .post:hover .post__thumbnail img  {
-    filter: saturate(0);
+    /* filter: saturate(0); */
     transition: filter 500ms ease;
 }
 
@@ -322,7 +323,7 @@ footer ul a:hover {
     margin-top: 7rem;
 }
 
-.search__bar-c0ntainer {
+.search__bar-cantainer {
     position: relative;
     width: 30rem;
     background: var(--color-gray-700) ;
@@ -396,6 +397,7 @@ footer ul a:hover {
     width: var(--form-width);
     background: var(--color-gray-700);
     padding: 1rem 2rem 3rem;
+    
 
 }
 
@@ -557,6 +559,97 @@ input, textarea, select {
     cursor: default;
     transition: var(--transition);
 }
+
+/* USER PROFILE */
+
+.profile__box {
+    margin: 6rem 250px 2rem;
+    align-items: center;
+    text-align: center;
+    padding: 0.8rem;
+    position: relative;
+    border-radius: var(--card-border-radius-1);
+    background: var(--color-gray-700);
+    display: flex;
+    justify-content: center;
+    padding-left: 90px;
+    padding-right: 90px;
+    border-bottom: var(--color-white);
+    
+}
+
+.menu-icon {
+    width: 25px;
+    position: absolute;
+    left: 40px;
+    top: 40px;
+}
+
+.profile__pic {
+    width: 150px;
+    border-radius: 50%;
+    background: var(--color-white);
+    padding: 6px;
+    margin: 30px 150px ;
+    display: flex;
+}
+
+.profile__bottom {
+    background: var(--color-primary-variant);
+    padding: 60px 0;
+    margin-right: -90px;
+    margin-left: -90px;
+    margin-bottom: 3px;
+    border-radius: 20px;
+    margin-top: 3px;
+    border-bottom: var(--color-white);
+
+}
+
+.follower {
+    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+}
+
+.followers {
+    flex: 1;
+    padding: 20px;
+}
+
+.all__blogs h3 {
+    margin: 0 0 0.2rem 0;
+    line-height: 1;
+}
+
+.all__blogs table {
+    width: 100%;
+    text-align: left;
+}
+
+.all__blogs table th {
+    background: var(--color-gray-700);
+    padding: 0.8rem;
+    color: var(--color-white);
+}
+
+.all__blogs table td {
+    padding: 0.8rem;
+    border-bottom: 1px solid var(--color-gray-200);
+}
+
+.all__blogs table tr:hover td {
+    background-color: var(--color-bg);
+    color: var(--color-white);
+    cursor: default;
+    transition: var(--transition);
+}
+
+.bottom {
+    padding: 5px;
+    padding-bottom: 40px;
+}
+
+
 
 
 
