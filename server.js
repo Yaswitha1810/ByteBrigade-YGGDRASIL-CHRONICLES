@@ -17,6 +17,7 @@ const categoryRoute = require("./route/category/categoryRoute.js");
 const groupRoute = require("./route/group/groupRoute.js");
 const { errorHandler, notFound } = require("./middleware/error/errorHandler.js");
 const checkUser = require("./middleware/auth/checkUser.js");
+const overrideFunction = require("./middleware/methodOverride/methodOverride.js");
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
+app.use(overrideFunction);
 
 //view engine
 app.set("view engine","ejs");

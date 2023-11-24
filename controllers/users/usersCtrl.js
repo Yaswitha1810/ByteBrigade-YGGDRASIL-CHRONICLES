@@ -79,11 +79,12 @@ const fetchUserDetailsCtrl = expressAsyncHandler(async (req,res)=> {
     validateMongodbId(id);
     try{
         const user = await User.findById(id).populate("posts");
-        res.json(user);
+        //res.json(user);
+        res.render("dashboard",{user});
     }catch(error){
         res.json(error);
     }
-})
+});
 
 //user profile
 const userProfileCtrl = expressAsyncHandler(async (req,res)=>{

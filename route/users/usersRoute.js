@@ -31,8 +31,8 @@ userRoutes.get("/register",(req,res)=>{
 })
 userRoutes.post("/register", userRegisterCtrl );
 userRoutes.post("/login",loginUserCtrl);
-userRoutes.get("/logout",authMiddleware,logoutUserCtrl);
-userRoutes.get("/",authMiddleware, fetchUsersCtrl);
+userRoutes.post("/logout",authMiddleware,logoutUserCtrl);
+// userRoutes.get("/",authMiddleware, fetchUsersCtrl);
 userRoutes.get("/profile/:id", authMiddleware, userProfileCtrl);
 userRoutes.put("/profilephoto-upload",authMiddleware,
                             photoUpload.single("image"),

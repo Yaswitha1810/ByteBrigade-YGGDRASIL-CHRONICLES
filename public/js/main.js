@@ -27,6 +27,6 @@ const getImagePreview = (event) =>{
 };
 
 openNavBtn.addEventListener("click", openNav);
-closeNavBtn.addEventListener("click", openNav);
+closeNavBtn.addEventListener("click", closeNav);
 
 

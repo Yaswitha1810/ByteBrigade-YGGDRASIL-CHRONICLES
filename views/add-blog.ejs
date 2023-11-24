@@ -42,7 +42,7 @@
                             <img src="<%= user.profilePhoto%>">
                         </div>
                         <ul>
-                            <li><a href="dashboard.html">Dashboard</a></li>
+                            <li><a href="/api/users/<%= user._id%>">Dashboard</a></li>
                             <li><a href="/api/users/logout">Logout</a></li>
                         </ul>
                     <% } else { %>

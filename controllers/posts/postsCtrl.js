@@ -120,7 +120,7 @@ const deletePostCtrl = expressAsyncHandler(async(req,res)=>{
     validateMongodbId(id);
     try{
         const post = await Post.findOneAndDelete(id);
-        res.json(post);
+        res.redirect("/");
     }catch(error){
         res.json(error);
     }
