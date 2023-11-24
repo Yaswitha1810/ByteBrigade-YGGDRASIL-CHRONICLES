@@ -90,7 +90,7 @@ body{
     width:calc(100%/2-25px);
     /* background:red; */
 }
-form .form-content .title{
+.form .form-content .title{
     position:relative;
     font-size: 24px;
     font-weight: 500;
@@ -106,15 +106,15 @@ form .form-content .title:before{
     background:#8abce1 ;
 
 }
-form .signup-form .title:before{
+.form .signup-form .title:before{
     width: 20px ;
 
 }
-form .form-content .input-boxes{
+.form .form-content .input-boxes{
     margin-top:  30px;
 
 }
-form .form-content .input-box{
+.form .form-content .input-box{
     /* display: flex; */
     align-items:center;
     height: 50px;
@@ -155,11 +155,11 @@ text-decoration: none;
 .form-content .text a:hover{
     text-decoration: underline;
     }
-form .form-content .button{
+.form .form-content .button{
     color:#fff;
     margin: top 48px;
 }
-form .form-content .button input{
+.form .form-content .button input{
     color:#fff;
     background:#3492da ;
     border-radius: 6px;
@@ -167,19 +167,19 @@ form .form-content .button input{
     cursor:pointer;
     transition:all 0.4s ease;
 }
-form .form-content .button input:hover{
+.form .form-content .button input:hover{
     background: #5b13b9;
 }
-form .form-content label{
+.form .form-content label{
     color: #5b13b9;
     cursor:pointer;
 }
-form .form-content label:hover{
+.form .form-content label:hover{
     
     text-decoration: underline;
 }
-form .form-content .login-text
-form .form-content .signup-text{
+.form .form-content .login-text
+.form .form-content .signup-text{
     text-align: center;
     margin-top: 25px;
 }

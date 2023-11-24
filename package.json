@@ -10,8 +10,13 @@
   "author": "ByteBrigade",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "@sendgrid/mail": "^7.7.0",
     "axios": "^1.6.2",
+=======
+    "axios": "^1.6.2",
+    "@sendgrid/mail": "^7.7.0",
+>>>>>>> 071769877921bed7cfde1455a0386895a516ba64
     "bad-words": "^3.0.4",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",

@@ -6,6 +6,10 @@ const postSchema = new mongoose.Schema({
         required: [true, " Blog Title is required" ],
         trim: true,
     },
+    description: {
+        type: String,
+        required: [true, " Blog Description is required" ],
+    },
     category: {
         type: String,
         required: [true, "Blog category is required"],

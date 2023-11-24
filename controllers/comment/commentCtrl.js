@@ -12,6 +12,7 @@ const createCommentCtrl = expressAsyncHandler(async(req,res)=>{
             user,
             description,
         });
+        res.json(comment);
     }catch(error){
         res.json(error);
     }

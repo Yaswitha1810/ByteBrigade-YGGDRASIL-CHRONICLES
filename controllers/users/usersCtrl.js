@@ -25,7 +25,6 @@ const userRegisterCtrl = expressAsyncHandler( async (req,res)=>{
 
 //Login
 const loginUserCtrl = expressAsyncHandler(async(req,res)=>{
-    console.log("checking");
     const { email,password }= req.body;
     const userFound = await User.findOne({email: req?.body?.email});
     if(userFound && (await userFound.isPasswordMatched(password))){
@@ -37,7 +36,7 @@ const loginUserCtrl = expressAsyncHandler(async(req,res)=>{
             isAdmin: userFound?.isAdmin,
             token: generateToken(userFound?._id),
         });
-        res.redirect("/");
+        //res.redirect("/");
     }
     else{
         res.status(401)
@@ -85,7 +84,7 @@ const userProfileCtrl = expressAsyncHandler(async (req,res)=>{
     const { id } = req.params;
     validateMongodbId(id);
     try{
-        const myProfile =await User.findById(id);
+        const myProfile =await User.findById(id).populate("posts");
         res.json(myProfile);
     }catch(error){
         res.json(error);
