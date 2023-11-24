@@ -7,8 +7,8 @@ const Category = require("../../model/category/Category");
 
 const homePage=expressAsyncHandler(async(req,res)=>{
     try{
-        const posts = await Post.find({}).populate("user").limit(5);
-        const categories = await Category.find({}).limit(6);
+        const posts = await Post.find({}).populate("user").sort({_id : -1}).limit(6);
+        const categories = await Category.find({}).sort({_id: -1}).limit(6);
         //console.log(req);
         res.render('home', {moment,posts,categories});
     }catch(error){

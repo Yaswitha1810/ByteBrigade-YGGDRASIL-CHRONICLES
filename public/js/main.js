@@ -1,8 +1,6 @@
 const navItems = document.querySelector(".nav__items");
 const openNavBtn = document.querySelector("#open__nav-btn");
 const closeNavBtn = document.querySelector(".close__nav-btn");
-const link = document.querySelector("a");
-const form = document.querySelector("form");
 
 //open nav dropdown
 const openNav = () => {
@@ -18,15 +16,17 @@ const closeNav = () => {
     closeNavBtn.style.display = 'none';
 }
 
+const getImagePreview = (event) =>{
+    var image = URL.createObjectURL(event.target.files[0]);
+    var imageDiv = document.getElementById("preview");
+    var newImg = document.createElement("img");
+    imageDiv.innerHTML = " ";
+    newImg.src = image ;
+    newImg.width = "70%" ;
+    imageDiv.appendChild(newImg);
+};
+
 openNavBtn.addEventListener("click", openNav);
 closeNavBtn.addEventListener("click", openNav);
 
-//open links
-link.addEventListener('click',()=>{
 
-});
-
-//submit forms
-form.addEventListener("submit",()=>{
-    
-});

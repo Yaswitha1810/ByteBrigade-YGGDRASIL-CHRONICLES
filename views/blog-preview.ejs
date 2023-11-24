@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LyfEscape.com/posts</title>
+    <title>LyfEscape.com/blog</title>
 
 
     <!-- CSS style sheet -->
@@ -31,22 +31,25 @@
     <!-- NAV BAR -->
     <nav>
         <div class="container nav__container">
-            <a href="../../" class="nav__logo">LyfEscape.com</a>
+            <a href="/" class="nav__logo">LyfEscape.com</a>
             <ul class="nav__items">
-                <li><a href="/api/posts">Blog</a></li>
+                <li><a href="/api/posts/">Blog</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <% if (locals.user) { %>
                 <li class="nav__profile">
                     <div class="avatar">
-                        <img src="./images/avatar.jpg">
+                        <img src="<%= user.profilePhoto%>">
                     </div>
                     
                     <ul>
                         <li><a href="dashboard.html">Dashboard</a></li>
                         <li><a href="logout.html">Logout</a></li>
                     </ul>
-                    
+                <% } else { %>
+                    <li><a href="/api/users/login">Login</a></li>
+                <% } %>       
                     
                 </li>
             </ul>
@@ -56,66 +59,33 @@
         </div>
     </nav>
 
+    <!-- SINGLE POST -->
 
 
 
-
-    <!-- SEARCH BAR -->
-
-    <section class="search__bar">
-        <form class="container search__bar-cantainer" action="">
-            <div>
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="search" placeholder="Search">
+    <section class="singlepost">
+        <div class="conatiner singlepost__container">
+            <h2><%- post.title %></h2>
+            <div class="post__author">
+                <div class="post__author-avatar">
+                    <img src="<%- post.user.profilePhoto %>" alt="">
+                </div>
+                <div class="post__author-info">
+                    <h5>By: <%- post.user.userName %></h5>
+                    <small><%= moment(post.createdAt).format('hh:mm a DD MMM YYYY') %></small>
+                </div>
             </div>
-            <button type="submit" class="btn">Go</button>
-        </form>
-    </section>
-    
-
-    <!-- POST SECTION -->
-
-    <section class="post">
-        <div class="conatiner posts__container">
-            <% if(posts!= '' ) { %>
-                <% posts.forEach((post,index)=>{ %>
-            <article class="post">
-                <div class="post__thumbnail">
-                    <img src="<%- post.image%>" alt="">
-                </div>
-                <div class="post__info">
-                    <a href="" class="category__button">wild Life</a>
-                    <h3 class="post__title"><%- post.title %></h3>
-                    <p class="post__body"><%- post.description %></p>
-                    <div class="post__author">
-                        <div class="post__author-avatar">
-                            <img src="<%=post.user.profilePhoto %>" alt="">
-                        </div>
-                        <div class="post__author-info">
-                            <h5>By: <%- post.user.userName %></h5>
-                            <small><%= moment(post.createdAt).format('hh:mm a DD MMM YYYY') %>0</small>
-                        </div>
-                    </div>
-                </div>
-            </article>
-                <% }) %>
-            <% } %>
+            <div class="singlepost__thumbnail">
+                <img src="<%- post.image %>" alt="">
+            </div>
+            <p>
+                <%- post.description %>
+            </p>
         </div>
+        <<button type="submit" class="btn">Go</button>
     </section>
 
 
-    <!-- CATEGORY BUTTONS -->
-
-    <section class="category__buttons">
-        <div class="container category__buttons-container">
-            <a href="" class="category__button">Sports</a>
-            <a href="" class="category__button">Travel</a>
-            <a href="" class="category__button">Wildlife</a>
-            <a href="" class="category__button">Food</a>
-            <a href="" class="category__button">Music</a>
-            <a href="" class="category__button">Lifestyle</a>
-        </div>
-    </section>
 
 
     <!-- ABOUT -->
@@ -177,7 +147,7 @@
         
     </footer>
 
-    <script src="js/main.js"></script>
+    <script src="./main.js"></script>
     
 </body>
 </html>

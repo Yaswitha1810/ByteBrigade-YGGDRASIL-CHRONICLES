@@ -16,10 +16,9 @@ const {
     profilePhotoUploadCtrl,
 } = require("../../controllers/users/usersCtrl.js");
 const authMiddleware = require("../../middleware/auth/authMiddleware.js");
-const { profilePhotoUpload,
-    profilePhotoResize,
- } = require("../../middleware/uploads/profilePhotoUpload.js");
-   
+const { photoUpload,
+        profilePhotoResize,} = require("../../middleware/uploads/photoUpload.js");
+
 const userRoutes= express.Router();
 
 
@@ -32,11 +31,11 @@ userRoutes.get("/register",(req,res)=>{
 })
 userRoutes.post("/register", userRegisterCtrl );
 userRoutes.post("/login",loginUserCtrl);
-userRoutes.post("/logout",authMiddleware,logoutUserCtrl);
+userRoutes.get("/logout",authMiddleware,logoutUserCtrl);
 userRoutes.get("/",authMiddleware, fetchUsersCtrl);
 userRoutes.get("/profile/:id", authMiddleware, userProfileCtrl);
 userRoutes.put("/profilephoto-upload",authMiddleware,
-                            profilePhotoUpload.single("image"),
+                            photoUpload.single("image"),
                             profilePhotoResize,
                             profilePhotoUploadCtrl );
 userRoutes.put("/:id",authMiddleware, updateUserCtrl);

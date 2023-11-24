@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LyfEscape.com</title>
+    <title>LyfEscape.com/blog</title>
 
 
     <!-- CSS style sheet -->
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="../../css/home.css">
 
     <!-- IconScout -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
@@ -38,20 +38,18 @@
                 <li><a href="services.html">Services</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <% if (locals.user) { %>
-                <li class="nav__profile">
-                    <div class="avatar">
-                        <img src="<%= user.profilePhoto%>">
-                    </div>
-                    <ul>
-                        <li><a href="dashboard.html">Dashboard</a></li>
-                        <li><a href="/api/users/logout">Logout</a></li>
-                    </ul>
+                    <li class="nav__profile">
+                        <div class="avatar">
+                            <img src="<%= user.profilePhoto%>">
+                        </div>
+                        <ul>
+                            <li><a href="dashboard.html">Dashboard</a></li>
+                            <li><a href="/api/users/logout">Logout</a></li>
+                        </ul>
                 <% } else { %>
                     <li><a href="/api/users/login">Login</a></li>
                 </li>
-                <% } %>       
-                    
-                
+                <% } %>
             </ul>
 
             <button id="open_nav-btn"><i class="fa-solid fa-bars" style="color: #2b5eb6;"></i></button>
@@ -59,76 +57,32 @@
         </div>
     </nav>
 
+    <!-- SINGLE POST -->
 
-    <!-- FEATURE PANEL -->
 
-    <section class="featured">
-        <div class="container feature__container">
-            <div class="post__thumbnail">
-                <img src="./images/blog1.avif" alt="">
-            </div>
-            <div class="post__info">
-                <a href="" class="category__button">Food</a>
-                <h2 class="post__title"><a href="post.html">My life my food</a></h2>
-                <p class="post__body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                </p>
-                <div class="post__author">
-                    <div class="post__author-avatar">
-                        <img src="./images/avatar1.jpeg" alt="">
-                    </div>
-                    <div class="post__author-info">
-                        <h5>By: Annebella</h5>
-                        <small>February 30, 2025 -11:11</small>
-                    </div>
+
+    <section class="singlepost">
+        <div class="conatiner singlepost__container">
+            <h2><%- post.title %></h2>
+            <div class="post__author">
+                <div class="post__author-avatar">
+                    <img src="<%- post.user.profilePhoto %>" alt="">
+                </div>
+                <div class="post__author-info">
+                    <h5>By: <%- post.user.userName %></h5>
+                    <small><%= moment(post.createdAt).format('hh:mm a DD MMM YYYY') %></small>
                 </div>
             </div>
+            <div class="singlepost__thumbnail">
+                <img src="<%- post.image %>" alt="">
+            </div>
+            <p>
+                <%- post.description %>
+            </p>
         </div>
     </section>
 
 
-    <!-- POST SECTION -->
-    
-    <section class="post">
-        <div class="conatiner posts__container">
-            <% if(posts!= '' ) { %>
-                <% posts.forEach((post,index)=>{ %>
-            <article class="post">
-                <div class="post__thumbnail">
-                    <img src="<%- post.image%>" alt="post pic">
-                </div>
-                <div class="post__info">
-                    <a href="" class="category__button"><%- post.category %></a>
-                    <a href="/api/posts/<%= post._id %>"><h3 class="post__title"><%- post.title %></h3> </a>
-                    <p class="post__body"><%- post.description %></p>
-                    <div class="post__author">
-                        <div class="post__author-avatar">
-                            <img src="<%=post.user.profilePhoto %>" alt="profile pic">
-                        </div>
-                        <div class="post__author-info">
-                            <h5>By: <%- post.user.userName %></h5>
-                            <small><%= moment(post.createdAt).format('hh:mm a DD MMM YYYY') %></small>
-                        </div>
-                    </div>
-                </div>
-            </article>
-            <% }) %>
-            <% } %>
-        </div>
-    </section>
-
-
-    <!-- CATEGORY BUTTONS -->
-
-    <section class="category__buttons">
-        <div class="container category__buttons-container">
-            <% if(categories!= '' ) { %>
-                <% categories.forEach((category,index)=>{ %>
-                    <a href="" class="category__button"><%- category.title %></a>
-                <% }) %>
-            <% } %>
-        </div>
-    </section>
 
 
     <!-- ABOUT -->
@@ -145,11 +99,12 @@
             <article>
                 <h4>Categories</h4>
                 <ul>
-                    <% if(categories!= '' ) { %>
-                        <% categories.forEach((category,index)=>{ %>
-                            <li><a href=""><%- category.title %></a></li>
-                        <% }) %>
-                    <% } %>
+                    <li><a href="">Sports</a></li>
+                    <li><a href="">Travel</a></li>
+                    <li><a href="">Wildlife</a></li>
+                    <li><a href="">Food</a></li>
+                    <li><a href="">Music</a></li>
+                    <li><a href="">Lifestyle</a></li>
                 </ul>
             </article>
             <article>
@@ -189,6 +144,7 @@
         
     </footer>
 
-    <script src="js/main.js"></script>
+    <script src="../../js/main.js"></script>
+    
 </body>
 </html>
