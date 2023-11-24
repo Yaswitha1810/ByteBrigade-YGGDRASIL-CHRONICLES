@@ -4,7 +4,7 @@ const request = require("request");
 const User = require("../../model/user/User");
 const generateToken = require("../../config/token/generateToken");
 const validateMongodbId = require("../../utils/validateMongodbId");
-const path = require('path');
+const cloudinaryUploadImg = require("../../utils/cloudinary");
 
 //Register
 const userRegisterCtrl = expressAsyncHandler( async (req,res)=>{
@@ -164,7 +164,6 @@ if(alreadyFollowing) throw new Error("already following");
 
 
 //unfollow
-
 const unfollowUserCtrl = expressAsyncHandler(async (req, res) => {
     const {unfollowId} = req.body
     const loginUserId = req.user.id;
@@ -184,7 +183,60 @@ const unfollowUserCtrl = expressAsyncHandler(async (req, res) => {
      
     res.json("you have succesfully unfollowed this user")
 });
-module.exports = { userRegisterCtrl, 
+
+//block user
+const blockUserCtrl = expressAsyncHandler(async(req,res) => {
+    const{id} = req.params;
+    validateMongodbId(id);
+
+    const user = await User.findByIdAndUpdate(
+        id,
+         {
+          isBlocked: true,
+         },
+         {new: true}
+         );
+         res.json(user);
+
+});
+
+//unBlock user
+const unBlockUserCtrl = expressAsyncHandler(async(req,res) => {
+    const{id} = req.params;
+    validateMongodbId(id);
+
+    const user = await User.findByIdAndUpdate(
+        id,
+         {
+          isBlocked: false,
+         },
+         {new: true}
+         );
+         res.json(user);
+
+});
+
+//generate token 
+
+//profile photo upload
+
+const profilePhotoUploadCtrl = expressAsyncHandler(async(req,res) => {
+   //find the login user
+    const {_id} = req.user;
+    const localPath = 'public/images/profile/${req.file.filename}';
+
+    const imgUploaded =await cloudinaryUploadImg(localPath);
+
+    const foundUser =await User.findByIdAndUpdate(_id,{
+        profilePhoto: imgUploaded?.url,
+        },{ new:true }
+    );
+    console.log(imgUploaded);
+    res.json(foundUser);
+});
+
+module.exports = { profilePhotoUploadCtrl,
+                    userRegisterCtrl, 
                     loginUserCtrl,
                     logoutUserCtrl, 
                     fetchUsersCtrl, 
@@ -195,4 +247,6 @@ module.exports = { userRegisterCtrl,
                     updateUserPasswordCtrl,
                     followingUserCtrl, 
                     unfollowUserCtrl,
+                    blockUserCtrl,
+                    unBlockUserCtrl,
                 };
