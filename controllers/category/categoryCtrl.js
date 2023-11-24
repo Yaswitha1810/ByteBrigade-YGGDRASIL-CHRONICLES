@@ -2,6 +2,17 @@ const expressAsyncHandler = require("express-async-handler");
 const Category = require("../../model/category/Category");
 const validateMongodb = require("../../utils/validateMongodbId");
 
+
+//get create category page
+const getCreateCategoryPageCtrl = expressAsyncHandler(async(req,res)=>{
+    try{
+        const categories = await Category.find({});
+        res.render('add-category',{categories});
+    }catch(error){
+        res.json(error);
+    }
+});
+
 //create category
 const createCategoryCtrl = expressAsyncHandler(async(req,res)=>{
     try{
@@ -21,7 +32,7 @@ const fetchAllCategoryCtrl = expressAsyncHandler(async(req,res)=>{
         const categories = await Category.find({})
             .populate("user")
             .sort("-createdAt");
-        res.json(categories);
+        res.render("manage-category",{categories});
     }catch(error){
         res.json(error); 
     }
@@ -70,7 +81,8 @@ const deleteCategoryCtrl = expressAsyncHandler(async(req,res)=>{
     }
 });
 
-module.exports = { createCategoryCtrl,
+module.exports = {  getCreateCategoryPageCtrl,
+                    createCategoryCtrl,
                     fetchAllCategoryCtrl,
                     fetchCategoryCtrl,
                     updateCategoryCtrl,

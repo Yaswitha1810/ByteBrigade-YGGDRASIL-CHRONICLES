@@ -33,23 +33,18 @@
         <div class="container nav__container">
             <a href="/" class="nav__logo">LyfEscape.com</a>
             <ul class="nav__items">
-                <li><a href="/api/posts/">Blog</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="/api/posts/">Blogs</a></li>
                 <% if (locals.user) { %>
-                    <li class="nav__profile">
-                        <div class="avatar">
-                            <img src="<%= user.profilePhoto%>">
-                        </div>
-                        <ul>
-                            <li><a href="/api/users/<%= user._id%>">Dashboard</a></li>
-                            <li><a href="/api/users/logout">Logout</a></li>
-                        </ul>
+                <li><a href="/api/users/<%= user._id%>">Dashboard</a></li>
+                <li><a href="/api/users/logout">Logout</a></li>
+                <li class="nav__profile">
+                    <div class="avatar">
+                        <a href="/api/users/profile/<%- user._id %>" ><img src="<%= user.profilePhoto%>"></a>
+                    </div>
+                </li>
                 <% } else { %>
                     <li><a href="/api/users/login">Login</a></li>
-                </li>
-                <% } %>
+                <% } %>       
             </ul>
 
             <button id="open_nav-btn"><i class="fa-solid fa-bars" style="color: #2b5eb6;"></i></button>

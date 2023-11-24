@@ -1,5 +1,6 @@
 const express = require("express");
-const { createCategoryCtrl,
+const { getCreateCategoryPageCtrl,
+        createCategoryCtrl,
         fetchAllCategoryCtrl,
         fetchCategoryCtrl,
         updateCategoryCtrl,
@@ -8,6 +9,7 @@ const authMiddleware = require("../../middleware/auth/authMiddleware");
 
 const categoryRoute = express.Router();
 
+categoryRoute.get("/create",authMiddleware, getCreateCategoryPageCtrl);
 categoryRoute.post("/",authMiddleware, createCategoryCtrl);
 categoryRoute.get("/",authMiddleware, fetchAllCategoryCtrl);
 categoryRoute.get("/:id",authMiddleware, fetchCategoryCtrl);

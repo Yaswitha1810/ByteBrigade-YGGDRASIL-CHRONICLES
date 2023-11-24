@@ -25,31 +25,23 @@
 
 </head>
 <body>
-
-
-
     <!-- NAV BAR -->
     <nav>
         <div class="container nav__container">
             <a href="/" class="nav__logo">LyfEscape.com</a>
             <ul class="nav__items">
-                <li><a href="/api/posts/">Blog</a></li>
-                <li><a href="/about"></a>About</li>
+                <li><a href="/api/posts/">Blogs</a></li>
                 <% if (locals.user) { %>
+                <li><a href="/api/users/<%= user._id%>">Dashboard</a></li>
+                <li><a href="/api/users/logout">Logout</a></li>
                 <li class="nav__profile">
                     <div class="avatar">
-                        <img src="<%= user.profilePhoto%>">
+                        <a href="/api/users/profile/<%- user._id %>" ><img src="<%= user.profilePhoto%>"></a>
                     </div>
-                    <ul>
-                        <li><a href="/api/users/<%= user._id%>">Dashboard</a></li>
-                        <li><a href="/api/users/logout">Logout</a></li>
-                    </ul>
+                </li>
                 <% } else { %>
                     <li><a href="/api/users/login">Login</a></li>
-                </li>
                 <% } %>       
-                    
-                
             </ul>
 
             <button id="open_nav-btn"><i class="fa-solid fa-bars" style="color: #2b5eb6;"></i></button>

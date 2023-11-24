@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
-app.use(overrideFunction);
+//app.use(overrideFunction);
 
 //view engine
 app.set("view engine","ejs");

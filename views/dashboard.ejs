@@ -8,7 +8,7 @@
 
 
     <!-- CSS style sheet -->
-    <link rel="stylesheet" href="../../../css/home.css">
+    <link rel="stylesheet" href="http://localhost:3000/css/home.css">
 
     <!-- IconScout -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
@@ -34,23 +34,18 @@
         <div class="container nav__container">
             <a href="/" class="nav__logo">LyfEscape.com</a>
             <ul class="nav__items">
-                <li><a href="/api/posts/">Blog</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="/api/posts/">Blogs</a></li>
                 <% if (locals.user) { %>
-                    <li class="nav__profile">
-                        <div class="avatar">
-                            <img src="<%= user.profilePhoto%>">
-                        </div>
-                        <ul>
-                            <li><a href="/api/users/<%= user._id%>">Dashboard</a></li>
-                            <li><a href="/api/users/logout">Logout</a></li>
-                        </ul>
-                    <% } else { %>
-                        <li><a href="/api/users/login">Login</a></li>
-                    </li>
-                <% } %>
+                <li><a href="/api/users/<%= user._id%>">Dashboard</a></li>
+                <li><a href="/api/users/logout">Logout</a></li>
+                <li class="nav__profile">
+                    <div class="avatar">
+                        <a href="/api/users/profile/<%- user._id %>" ><img src="<%= user.profilePhoto%>"></a>
+                    </div>
+                </li>
+                <% } else { %>
+                    <li><a href="/api/users/login">Login</a></li>
+                <% } %>       
             </ul>
 
             <button id="open_nav-btn"><i class="fa-solid fa-bars" style="color: #2b5eb6;"></i></button>
@@ -66,10 +61,10 @@
         <aside>
             <ul>
                 <li><a href="/api/posts/create"><i class="fa-solid fa-pen"></i><h5>Add Blog</h5></a></li>
-                <li><a href="dashboard.html" class="active"><i class="fa-solid fa-address-card"></i><h5>Manage Blogs</h5></a></li>
-                <li><a href="manage-users.html"><i class="fa-solid fa-user-group"></i><h5>Manage User</h5></a></li>
-                <li><a href="edit-category.html"><i class="fa-solid fa-pen-to-square"></i><h5>Add Category</h5></a></li>
-                <li><a href="manage-categories.html"><i class="fa-solid fa-list"></i><h5>Manage Category</h5></a></li>
+                <li><a href="/api/users/<%-user._id%>" class="active"><i class="fa-solid fa-address-card"></i><h5>Manage Blogs</h5></a></li>
+                <!-- <li><a href="manage-users.html"><i class="fa-solid fa-user-group"></i><h5>Manage User</h5></a></li> -->
+                <li><a href="/api/category/create"><i class="fa-solid fa-pen-to-square"></i><h5>Add Category</h5></a></li>
+                <li><a href="/api/category/"><i class="fa-solid fa-list"></i><h5>Manage Category</h5></a></li>
             </ul>
         </aside>
         <main>

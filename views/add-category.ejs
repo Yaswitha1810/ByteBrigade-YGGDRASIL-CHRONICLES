@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LyfEscape.com/posts</title>
+    <title>LyfEscape.com</title>
 
 
     <!-- CSS style sheet -->
@@ -25,7 +26,6 @@
 
 </head>
 <body>
-
 
 
     <!-- NAV BAR -->
@@ -52,70 +52,16 @@
         </div>
     </nav>
 
-    <!-- SEARCH BAR -->
 
-    <section class="search__bar">
-        <form class="container search__bar-container" action="/api/posts/search" method="post" >
-            <div>
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <!-- <input type="search" name="category" placeholder="Search"> -->
-                <select name="category" id="">
-                    <% if(categories!= '' ) { %>
-                        <% categories.forEach((category,index)=>{ %>
-                            <option value="<%- category.title %>"><%- category.title %></option>
-                        <% }) %>
-                    <% } %>
-                </select>
-            </div>
-            <button type="submit" class="btn">Go</button>
-        </form>
-    </section>
-    
-
-    <!-- POST SECTION -->
-
-    <section class="post">
-        <div class="conatiner posts__container">
-            <% if(posts!= '' ) { %>
-                <% posts.forEach((post,index)=>{ %>
-            <article class="post">
-                <div class="post__thumbnail">
-                    <img src="<%- post.image%>" alt="">
-                </div>
-                <div class="post__info">
-                    <a href="" class="category__button"><%- post.category %></a>
-                    <h3 class="post__title"><%- post.title %></h3>
-                    <p class="post__body"><%- post.description %></p>
-                    <div class="post__author">
-                        <div class="post__author-avatar">
-                            <img src="<%=post.user.profilePhoto %>" alt="">
-                        </div>
-                        <div class="post__author-info">
-                            <h5>By: <%- post.user.userName %></h5>
-                            <small><%= moment(post.createdAt).format('hh:mm a DD MMM YYYY') %>0</small>
-                        </div>
-                    </div>
-                </div>
-            </article>
-                <% }) %>
-            <% } %>
+    <section class="form__section">
+        <div class="container form__section-container">
+            <h2>Add Category</h2>
+            <form action="/api/category" method="post" enctype="multipart/form-data" >
+                <input type="text" name="title" placeholder="Title">
+                <button type="submit" class="btn">Add Category</button>
+            </form>
         </div>
     </section>
-
-
-    <!-- CATEGORY BUTTONS -->
-
-    <section class="category__buttons">
-        <div class="container category__buttons-container">
-            <a href="" class="category__button">Sports</a>
-            <a href="" class="category__button">Travel</a>
-            <a href="" class="category__button">Wildlife</a>
-            <a href="" class="category__button">Food</a>
-            <a href="" class="category__button">Music</a>
-            <a href="" class="category__button">Lifestyle</a>
-        </div>
-    </section>
-
 
     <!-- ABOUT -->
 
@@ -175,8 +121,9 @@
         </div>
         
     </footer>
+    
 
-    <script src="../../js/main.js"></script>
+    <script src="./main.js"></script>
     
 </body>
 </html>

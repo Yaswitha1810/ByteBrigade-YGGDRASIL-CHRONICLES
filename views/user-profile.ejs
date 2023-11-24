@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LyfEscape.com/blog</title>
+    <title>LyfEscape.com</title>
 
 
     <!-- CSS style sheet -->
-    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="stylesheet" href="http://localhost:3000/css/home.css">
 
     <!-- IconScout -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
@@ -33,25 +33,18 @@
         <div class="container nav__container">
             <a href="/" class="nav__logo">LyfEscape.com</a>
             <ul class="nav__items">
-                <li><a href="/api/posts/">Blog</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="/api/posts/">Blogs</a></li>
                 <% if (locals.user) { %>
+                <li><a href="/api/users/<%= user._id%>">Dashboard</a></li>
+                <li><a href="/api/users/logout">Logout</a></li>
                 <li class="nav__profile">
                     <div class="avatar">
-                        <img src="<%= user.profilePhoto%>">
+                        <a href="/api/users/profile/<%- user._id %>" ><img src="<%= user.profilePhoto%>"></a>
                     </div>
-                    
-                    <ul>
-                        <li><a href="dashboard.html">Dashboard</a></li>
-                        <li><a href="logout.html">Logout</a></li>
-                    </ul>
+                </li>
                 <% } else { %>
                     <li><a href="/api/users/login">Login</a></li>
                 <% } %>       
-                    
-                </li>
             </ul>
 
             <button id="open_nav-btn"><i class="fa-solid fa-bars" style="color: #2b5eb6;"></i></button>
@@ -59,31 +52,59 @@
         </div>
     </nav>
 
-    <!-- SINGLE POST -->
 
-
-
-    <section class="singlepost">
-        <div class="conatiner singlepost__container">
-            <h2><%- post.title %></h2>
-            <div class="post__author">
-                <div class="post__author-avatar">
-                    <img src="<%- post.user.profilePhoto %>" alt="">
+    <div class="container">
+        <div class="profile__box">
+            
+            <div>
+                <img class="profile__pic" src="<%- user.profilePhoto %>" alt="">
+                <div>
+                    <h3><%- user.userName %></h3>
                 </div>
-                <div class="post__author-info">
-                    <h5>By: <%- post.user.userName %></h5>
-                    <small><%= moment(post.createdAt).format('hh:mm a DD MMM YYYY') %></small>
+
+                <div class="follower">
+                    <div class="followers">
+                        <p>Posts</p>
+                        <p><%- user.posts.length %></p>
+                    </div>
+                    <div class="followers">
+                        <p>Followers</p>
+                        <p><%- user.followers.length %></p>
+                    </div>
+                    <div class="followers">
+                        <p>Following</p>
+                        <p><%- user.following.length %></p>
+                    </div>
+                </div>
+                
+                <div class="bottom">
+                    <button class="btn">Follow</button>
+                    <button class="btn">Unfollow</button>
+                    <p><%- user.bio %></p>
+                </div>
+                
+
+                <div class="all__blogs">
+                    <h3>All Blogs</h3>
+                    <table>
+                        
+                        <tbody>
+                            <% if(user.posts != '' ) { %>
+                                <% for(var i=0 ; i < user.posts.length ; i++){ %>
+                            <tr>
+                                <td><%- user.posts[i].title %></td>
+                                <td><%- user.posts[i].category %></td>
+                                <td><img src="<%- user.posts[i].image %>" alt=""></td>                                
+                            </tr>
+                            <% } %>
+                        <% } %>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <div class="singlepost__thumbnail">
-                <img src="<%- post.image %>" alt="">
-            </div>
-            <p>
-                <%- post.description %>
-            </p>
+            
         </div>
-        <<button type="submit" class="btn">Go</button>
-    </section>
+    </div>
 
 
 
