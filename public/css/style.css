@@ -11,13 +11,13 @@ body{
     display: flex;
     align-items:center;
     justify-content:center;
-    background:rgb(218, 199, 54);
+    background:#0f0f3e(95, 54, 218);
 }
 .container{
     position: relative;
     max-width:850px;
     width:100%;
-    background:#fff;
+    background:#ffffff;
     padding:40px 30px;
     box-shadow: 0 5px 10px rgba(0,0,0,0,0.2);
     perspective: 2700px;
@@ -41,7 +41,7 @@ body{
     position:absolute;
  height: 100%; 
  width: 100%; 
- background: #8abce1;
+ background: #0f0f3e(147, 121, 241);
  opacity: 0.3;
  /* z-index: 100; */
 }
@@ -103,7 +103,7 @@ form .form-content .title:before{
     bottom: 0;
     height:3px;
     width: 25px;
-    background:#8abce1 ;
+    background:#0f0f3e ;
 
 }
 .form .signup-form .title:before{
@@ -139,7 +139,7 @@ form .form-content .title:before{
 }
 .form-content .input-box i{
     position:absolute;
-    color:#3492da;
+    color:#0f0f3e;
     font: size 17px;
     margin-top: 14px;
 
