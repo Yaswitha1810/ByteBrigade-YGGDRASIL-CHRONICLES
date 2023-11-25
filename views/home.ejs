@@ -61,7 +61,7 @@
             </div>
             <div class="post__info">
                 <a href="" class="category__button"><%- mostViewed.category %></a>
-                <h2 class="post__title"><a href="/api/posts/<%= mostViewed._id %>"><%- mostViewed.title %></a></h2>
+                <h2 class="post__title"><a href="<% /api/posts/<%= mostViewed._id %>"><%- mostViewed.title %></a></h2>
                 <p class="post__body">
                     <%- mostViewed.description.substring(0,500) %>...
                 </p>
@@ -70,8 +70,10 @@
                         <img src="<%= mostViewed.user.profilePhoto %>" alt="">
                     </div>
                     <div class="post__author-info">
+                        <a href="/api/users/profile/<%- mostViewed.user._id %>">
                         <h5>By: <%- mostViewed.user.userName %></h5>
                         <small><%= moment(mostViewed.createdAt).format('hh:mm a DD MMM YYYY') %></small>
+                        </a>
                     </div>
                 </div>
             </div>
