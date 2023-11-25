@@ -60,10 +60,10 @@
                 <img src="<%- mostViewed.image %>" alt="">
             </div>
             <div class="post__info">
-                <a href="" class="category__button">Food</a>
+                <a href="" class="category__button"><%- mostViewed.category %></a>
                 <h2 class="post__title"><a href="/api/posts/<%= mostViewed._id %>"><%- mostViewed.title %></a></h2>
                 <p class="post__body">
-                    <%- mostViewed.description %>
+                    <%- mostViewed.description.substring(0,500) %>...
                 </p>
                 <div class="post__author">
                     <div class="post__author-avatar">
@@ -92,17 +92,21 @@
                     <img src="<%- post.image%>" alt="post pic">
                 </div>
                 <div class="post__info">
+                    <a href="/api/posts/<%= post._id %>">
                     <a href="" class="category__button"><%- post.category %></a>
                     <a href="/api/posts/<%= post._id %>"><h3 class="post__title"><%- post.title %></h3> </a>
-                    <p class="post__body"><%- post.description %></p>
+                    <p class="post__body"><%- post.description.substring(0,200)%>...</p>
                     <div class="post__author">
                         <div class="post__author-avatar">
                             <img src="<%= post.user.profilePhoto %>" alt="profile pic">
                         </div>
+                    </a>
+                    <a href="/api/users/profile/<%- post.user._id %>">
                         <div class="post__author-info">
                             <h5>By: <%- post.user.userName %></h5>
                             <small><%= moment(post.createdAt).format('hh:mm a DD MMM YYYY') %></small>
                         </div>
+                    </a>
                     </div>
                 </div>
             </article>

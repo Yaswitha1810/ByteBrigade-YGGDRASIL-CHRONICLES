@@ -78,22 +78,27 @@
         <div class="conatiner posts__container">
             <% if(posts!= '' ) { %>
                 <% posts.forEach((post,index)=>{ %>
+                    
             <article class="post">
                 <div class="post__thumbnail">
                     <img src="<%- post.image%>" alt="">
                 </div>
                 <div class="post__info">
+                <a href="/api/posts/<%= post._id %>" >
                     <a href="" class="category__button"><%- post.category %></a>
                     <h3 class="post__title"><%- post.title %></h3>
-                    <p class="post__body"><%- post.description %></p>
+                    <p class="post__body"><%- post.description.substring(0,200)%>...</p>
+                </a>
                     <div class="post__author">
+                        <a href="/api/users/profile/<%- post.user._id %>">
                         <div class="post__author-avatar">
                             <img src="<%=post.user.profilePhoto %>" alt="">
                         </div>
                         <div class="post__author-info">
                             <h5>By: <%- post.user.userName %></h5>
-                            <small><%= moment(post.createdAt).format('hh:mm a DD MMM YYYY') %>0</small>
+                            <small><%= moment(post.createdAt).format('hh:mm a DD MMM YYYY') %></small>
                         </div>
+                        </a>
                     </div>
                 </div>
             </article>
