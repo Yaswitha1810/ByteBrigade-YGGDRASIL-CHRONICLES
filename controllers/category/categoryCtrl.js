@@ -18,9 +18,9 @@ const createCategoryCtrl = expressAsyncHandler(async(req,res)=>{
     try{
         const category= await Category.create({
             user: req.user._id,
-            title: req.body.title,
+            title: req?.body?.title,
         });
-        res.json(category);
+        res.redirect("/api/users/"+user_id);
     }catch(error){
         res.json(error);
     }

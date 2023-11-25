@@ -61,7 +61,7 @@
             </div>
             <div class="post__info">
                 <a href="" class="category__button"><%- mostViewed.category %></a>
-                <h2 class="post__title"><a href="<% /api/posts/<%= mostViewed._id %>"><%- mostViewed.title %></a></h2>
+                <h2 class="post__title"><a href="/api/posts/<%= mostViewed._id %>"> <%- mostViewed.title %></a></h2>
                 <p class="post__body">
                     <%- mostViewed.description.substring(0,500) %>...
                 </p>
