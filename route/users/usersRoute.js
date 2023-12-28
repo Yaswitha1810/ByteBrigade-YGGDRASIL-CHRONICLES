@@ -33,7 +33,7 @@ userRoutes.post("/register", userRegisterCtrl );
 userRoutes.post("/login",loginUserCtrl);
 userRoutes.get("/logout",authMiddleware,logoutUserCtrl);
 // userRoutes.get("/",authMiddleware, fetchUsersCtrl);
-userRoutes.get("/profile/:id", authMiddleware, userProfileCtrl);
+userRoutes.get("/profile/:id", userProfileCtrl);
 userRoutes.put("/profilephoto-upload",authMiddleware,
                             photoUpload.single("image"),
                             profilePhotoResize,

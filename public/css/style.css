@@ -4,6 +4,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "poppins",sans-serif;
+    
 
 }
 body{
@@ -11,13 +12,13 @@ body{
     display: flex;
     align-items:center;
     justify-content:center;
-    background:#0f0f3e(95, 54, 218);
+    background: #4747bd;
 }
 .container{
     position: relative;
     max-width:850px;
     width:100%;
-    background:#ffffff;
+    background:white;
     padding:40px 30px;
     box-shadow: 0 5px 10px rgba(0,0,0,0,0.2);
     perspective: 2700px;
