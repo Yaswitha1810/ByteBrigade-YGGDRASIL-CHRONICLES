@@ -1,12 +1,12 @@
 const express = require("express");
 const {
-  sentEmailMsgCtrl,
-  sendEmailMsgCtrl,
+  sendVerifyMailCtrl,
+  verifyMail,
 } = require("../../controllers/EmailMessaging/emailMsgCtrl");
 const authMiddleware = require("../../middleware/auth/authMiddleware");
 
 const emailMsgRoute = express.Router();
 
-emailMsgRoute.post("/", authMiddleware, sendEmailMsgCtrl);
+emailMsgRoute.get("/verify/:id", verifyMail);
 
 module.exports = emailMsgRoute;

@@ -1,19 +1,22 @@
 const expressAsyncHandler = require("express-async-handler");
 const fs = require("fs");
-
+const nodemailer = require("nodemailer");
 const User = require("../../model/user/User");
 const generateToken = require("../../config/token/generateToken");
 const validateMongodbId = require("../../utils/validateMongodbId");
 const cloudinaryUploadImg = require("../../utils/cloudinary");
-
+const {
+  sendVerifyMailCtrl,
+  verifyMail,
+} = require("../EmailMessaging/emailMsgCtrl.js");
 //Register
 const userRegisterCtrl = expressAsyncHandler(async (req, res) => {
-  //check if already exists
+  // Check if user already exists
   const userExists = await User.findOne({ email: req?.body?.email });
   if (userExists) throw new Error("User already exists");
+
   try {
     const user = await User.create({
-      //req.body && req.body.userName == req?.body?.userName
       userName: req?.body?.userName,
       email: req?.body?.email,
       password: req?.body?.password,
@@ -23,9 +26,61 @@ const userRegisterCtrl = expressAsyncHandler(async (req, res) => {
       httpOnly: true,
       maxAge: 20 * 4 * 60 * 60 * 1000,
     });
-    res.redirect("/");
+
+    const userData = await user.save();
+    console.log(req.body);
+    console.log(userData._id);
+    if (userData) {
+      // Use sendVerifyMailCtrl
+      const email = req.body.email;
+      const userId = userData._id;
+
+      // Connect with the SMTP
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false,
+        auth: {
+          user: process.env.SERVER_MAIL,
+          pass: process.env.SERVER_PASS,
+        },
+      });
+
+      // Compose the email message
+      let message = {
+        from: process.env.SERVER_MAIL, // Sender address
+        to: email, // Receiver's email
+        subject: "Verify your email", // Subject line
+        text: "Please click the link to verify your email.", // Plain text body
+        html: `<b>Hey there!</b><br/><br/>Please click <a href="http://localhost:3000/api/email/verify/${userId}">here</a> to verify your email.`, // HTML body
+      };
+
+      // Send the email
+      transporter
+        .sendMail(message)
+        .then((info) => {
+          return res.status(201).json({
+            msg: "You should receive an email shortly.",
+            info: info.messageId,
+            preview: nodemailer.getTestMessageUrl(info),
+          });
+        })
+        .catch((error) => {
+          return res.status(500).json({ error });
+        });
+
+      console.log("Sent verification email");
+      // return res.status(201).json({
+      //   message: "Your registration has been done. Please verify your mail.",
+      // });
+    } else {
+      return res.status(400).json({ message: "Your registration has failed" });
+    }
+
+    // res.redirect("/");
   } catch (error) {
-    res.json(error);
+    return res.status(500).json({ error: error.message });
   }
 });
 
