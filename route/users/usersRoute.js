@@ -37,7 +37,7 @@ userRoutes.post("/register", userRegisterCtrl);
 userRoutes.post("/login", loginUserCtrl);
 userRoutes.get("/logout", authMiddleware, logoutUserCtrl);
 // userRoutes.get("/",authMiddleware, fetchUsersCtrl);
-userRoutes.get("/profile/:id", authMiddleware, userProfileCtrl);
+userRoutes.get("/profile/:id", userProfileCtrl);
 userRoutes.put(
   "/profilephoto-upload",
   authMiddleware,
@@ -53,5 +53,6 @@ userRoutes.put("/:block-user/:id", authMiddleware, blockUserCtrl);
 userRoutes.put("/:unblock-user/:id", authMiddleware, unBlockUserCtrl);
 userRoutes.delete("/:id", deleteUserCtrl);
 userRoutes.get("/:id", fetchUserDetailsCtrl);
+userRoutes.get("/forget", authMiddleware, forgetLoadCtrl);
 
 module.exports = userRoutes;
