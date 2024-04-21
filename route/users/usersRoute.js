@@ -48,11 +48,11 @@ userRoutes.put(
 userRoutes.put("/:id", authMiddleware, updateUserCtrl);
 userRoutes.put("/password", authMiddleware, updateUserPasswordCtrl);
 userRoutes.post("/follow", authMiddleware, followingUserCtrl);
-userRoutes.put("/:unfollow", authMiddleware, unfollowUserCtrl);
-userRoutes.put("/:block-user/:id", authMiddleware, blockUserCtrl);
-userRoutes.put("/:unblock-user/:id", authMiddleware, unBlockUserCtrl);
+userRoutes.put("/unfollow", authMiddleware, unfollowUserCtrl);
+userRoutes.put("/block-user/:id", authMiddleware, blockUserCtrl);
+userRoutes.put("/unblock-user/:id", authMiddleware, unBlockUserCtrl);
 userRoutes.delete("/:id", deleteUserCtrl);
 userRoutes.get("/:id", fetchUserDetailsCtrl);
-userRoutes.get("/forget", authMiddleware, forgetLoadCtrl);
+userRoutes.post("/forget", forgetLoadCtrl);
 
 module.exports = userRoutes;
