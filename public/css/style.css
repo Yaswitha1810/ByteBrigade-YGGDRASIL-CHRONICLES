@@ -12,7 +12,7 @@ body{
     display: flex;
     align-items:center;
     justify-content:center;
-    background: #4747bd;
+    background:#4b4bdb(95, 54, 218);
 }
 .container{
     position: relative;
