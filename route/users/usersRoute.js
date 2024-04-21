@@ -37,7 +37,6 @@ userRoutes.post("/register", userRegisterCtrl);
 userRoutes.post("/login", loginUserCtrl);
 userRoutes.get("/logout", authMiddleware, logoutUserCtrl);
 // userRoutes.get("/",authMiddleware, fetchUsersCtrl);
-<<<<<<< HEAD
 userRoutes.get("/profile/:id", userProfileCtrl);
 userRoutes.put(
   "/profilephoto-upload",
@@ -54,21 +53,5 @@ userRoutes.put("/block-user/:id", authMiddleware, blockUserCtrl);
 userRoutes.post("/unblock-user/:id", authMiddleware, unBlockUserCtrl);
 userRoutes.delete("/:id", deleteUserCtrl);
 userRoutes.get("/:id", fetchUserDetailsCtrl);
-userRoutes.get("/forget", authMiddleware, forgetLoadCtrl);
-=======
-userRoutes.get("/profile/:id", authMiddleware, userProfileCtrl);
-userRoutes.put("/profilephoto-upload",authMiddleware,
-                            photoUpload.single("image"),
-                            profilePhotoResize,
-                            profilePhotoUploadCtrl );
-userRoutes.put("/:id",authMiddleware, updateUserCtrl);
-userRoutes.put("/password",authMiddleware, updateUserPasswordCtrl);
-userRoutes.put("/:follow",authMiddleware, followingUserCtrl);
-userRoutes.put("/:unfollow",authMiddleware, unfollowUserCtrl);
-userRoutes.put("/:block-user/:id",authMiddleware, blockUserCtrl);
-userRoutes.put("/:unblock-user/:id",authMiddleware, unBlockUserCtrl);
-userRoutes.delete("/:id",deleteUserCtrl);
-userRoutes.get("/:id",fetchUserDetailsCtrl );
-
->>>>>>> 06b9b1e7323ff0b98219381450eda326be0b45ba
+userRoutes.post("/forget", authMiddleware, forgetLoadCtrl);
 module.exports = userRoutes;
