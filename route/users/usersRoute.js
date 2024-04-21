@@ -20,9 +20,16 @@ const {
   photoUpload,
   profilePhotoResize,
 } = require("../../middleware/uploads/photoUpload.js");
+const {
+  photoUpload,
+  profilePhotoResize,
+} = require("../../middleware/uploads/photoUpload.js");
 
 const userRoutes = express.Router();
+const userRoutes = express.Router();
 
+userRoutes.get("/login", (req, res) => {
+  res.render("login.ejs");
 userRoutes.get("/login", (req, res) => {
   res.render("login.ejs");
 });

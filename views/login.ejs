@@ -1,86 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>login</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css" />
     <!--fontawesome CDN LInk-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
 
-<body>
+  <body>
     <div class="container">
-        <input type="checkbox" id="flip">
-        <div class="cover">
-            <div class="front">
-                <img src="https://community.nasscom.in/sites/default/files/styles/960_x_600/public/media/images/Picture1_8.png?itok=4YIHRtCq" alt="">
-                <div class="text">
-                    <!-- <span class="text-1">heyya</span>
+      <input type="checkbox" id="flip" />
+      <div class="cover">
+        <div class="front">
+          <img
+            src="https://community.nasscom.in/sites/default/files/styles/960_x_600/public/media/images/Picture1_8.png?itok=4YIHRtCq"
+            alt=""
+          />
+          <div class="text">
+            <!-- <span class="text-1">heyya</span>
                     <span class="text-2">love you</span> -->
-                </div>
-            </div>
+          </div>
         </div>
-        <div class="form">
-            
-            <div class="form-content">
-                <div class="Login-form">
-                    <div class="title">Login</div>
-                    
-                    <div class="input-boxes">
-                        <form action="/api/users/login" method="post">
-                        <div class="input-box">
-                            <i class="fas fa-envelope"></i>
-                            <input type="text" name="email" placeholder="Enter your email" required>
-                        </div>
-                        <div class="input-box">
-                            <i class="fas fa-envelope"></i>
-                            <input type="password" name="password" placeholder="Enter your password" required>
-                        </div>
-                        <!-- <div class="text"><a href="#">Forgot password?</a></div> -->
-                        <div class="button input-box">
-                            <input type="submit" value="submit">
-                            <div class="text sign-up-text">Don't have an account?<label for="flip"> Signup now</label></div>
+      </div>
+      <div class="form">
+        <div class="form-content">
+          <div class="Login-form">
+            <div class="title">Login</div>
 
-                        </div>
-                    </form>
-                    </div>
-                    
+            <div class="input-boxes">
+              <form action="/api/users/login" method="post">
+                <div class="input-box">
+                  <i class="fas fa-envelope"></i>
+                  <input
+                    type="text"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                  />
                 </div>
-                <div class="signup-form">
-                    <div class="title">SignUp</div>
-                    <div class="input-boxes">
-                    <form action="/api/users/register" method="post">   
-                        <div class="input-box">
-                            <i class="fas fa-user"></i>
-                            <input type="text" name="userName" placeholder="Enter your user name" required>
-                        </div>
-                        <div class="input-box">
-                            <i class="fas fa-envelope"></i>
-                            <input type="email" name="email" placeholder="Enter your email" required>
-                        </div>
-                        <div class="input-box">
-                            <i class="fas fa-envelope"></i>
-                            <input type="password" name="password" placeholder="Enter your password" required>
-                        </div>
-
-                        <div class="button input-box">
-                            
-                            <input type="submit" value="submit">
-                            <div class="text sign-up-text">Already have an account?<label for="flip"> Login now</label>
-                            </div>
-
-                        </div>
-                    </form> 
-                    </div>
+                <div class="input-box">
+                  <i class="fas fa-envelope"></i>
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                  />
                 </div>
+                <div class="text">
+                  <a href="/api/users/forget">Forgot password?</a>
+                </div>
+                <div class="button input-box">
+                  <input type="submit" value="submit" />
+                  <div class="text sign-up-text">
+                    Don't have an account?<label for="flip"> Signup now</label>
+                  </div>
+                </div>
+              </form>
             </div>
+          </div>
+          <div class="signup-form">
+            <div class="title">SignUp</div>
+            <div class="input-boxes">
+              <form action="/api/users/register" method="post">
+                <div class="input-box">
+                  <i class="fas fa-user"></i>
+                  <input
+                    type="text"
+                    name="userName"
+                    placeholder="Enter your user name"
+                    required
+                  />
+                </div>
+                <div class="input-box">
+                  <i class="fas fa-envelope"></i>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+                <div class="input-box">
+                  <i class="fas fa-envelope"></i>
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                  />
+                </div>
+
+                <div class="button input-box">
+                  <input type="submit" value="submit" />
+                  <div class="text sign-up-text">
+                    Already have an account?<label for="flip"> Login now</label>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-
-</body>
-
+  </body>
 </html>
