@@ -3,23 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LyfEscape.com</title>
-
+    <title>LyfEscape.com/blogs</title>
     <!-- CSS style sheet -->
-    <link rel="stylesheet" href="./styles.css" />
-
-    <!-- IconScout -->
-    <link
-      rel="stylesheet"
-      href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
-    />
-
+    <link rel="stylesheet" href="./styleS.css" />
     <!-- FONT AWESOME -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-
     <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,7 +18,6 @@
       href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&family=Caprasimo&family=Chela+One&family=Merriweather&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,800;1,900&family=Sacramento&family=Ubuntu&display=swap"
       rel="stylesheet"
     />
-
     <!-- FEVICON -->
     <link rel="icon" href="images/favicon.png" />
   </head>
@@ -37,12 +27,7 @@
       <div class="container nav__container">
         <a href="index.html" class="nav__logo">LyfEscape.com</a>
         <ul class="nav__items">
-          <li>
-            <a href="blog.html"
-              ><h1>Blog</h1>
-              Blog</a
-            >
-          </li>
+          <li><a href="blog.html">Blog</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="services.html">Services</a></li>
           <li><a href="contact.html">Contact</a></li>
@@ -59,78 +44,23 @@
         </ul>
 
         <button id="open_nav-btn">
-          <i class="fa-solid fa-bars" style="color: #b62b2b"></i>
+          <i class="fa-solid fa-bars" style="color: #2b5eb6"></i>
         </button>
-        <!-- <button id="close_nav-btn" style="color: #b62b2b">
-          <i class="fa-solid fa-bars" style="color: #b62b2b"></i>
-        </button> -->
+        <button id="open_nav-btn"></button>
       </div>
     </nav>
-
-    <div class="container">
-      <div class="profile__box">
-        <div>
-          <img class="profile__pic" src="./images/avatar.jpg" alt="" />
-          <div>
-            <h3>Shiksha Vishwakarma</h3>
-            <p>Shiksha_V</p>
-          </div>
-
-          <div class="follower">
-            <div class="followers">
-              <p>Posts</p>
-              <p>69</p>
-            </div>
-            <div class="followers">
-              <p>Followers</p>
-              <p>69</p>
-            </div>
-            <div class="followers">
-              <p>Following</p>
-              <p>69</p>
-            </div>
-          </div>
-
-          <div class="bottom">
-            <button class="btn">Follow</button>
-            <button class="btn">Unfollow</button>
-            <p>Sunshine and smile</p>
-          </div>
-
-          <div class="all__blogs">
-            <h3>All Blogs</h3>
-            <table>
-              <tbody>
-                <tr>
-                  <td>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  </td>
-                  <td>Wildlife</td>
-                  <td><img src="./images/blog1.avif" alt="" /></td>
-                </tr>
-                <tr>
-                  <td>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  </td>
-                  <td>Wildlife</td>
-                  <td><img src="./images/blog1.avif" alt="" /></td>
-                </tr>
-                <tr>
-                  <td>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  </td>
-                  <td>Wildlife</td>
-                  <td><img src="./images/blog1.avif" alt="" /></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+    <!-- SINGLE POST -->
+    <section class="singlepost">
+      <div class="container singlepost__container">
+        <div class="verification__message">
+          <h2>Your Email has Successfully Verified</h2>
+          <br />
+          <i class="fas fa-check-circle verification__icon"></i><br />
+          <button class="verification__button">OK</button>
         </div>
       </div>
-    </div>
-
+    </section>
     <!-- ABOUT -->
-
     <footer>
       <div class="footer__socials">
         <a href="" target="_blank"><i class="fa-brands fa-instagram"></i></a>
@@ -186,7 +116,7 @@
         <small>Copyright &copy; BYTEBRIGADE</small>
       </div>
     </footer>
-
+    <!-- Your footer code here -->
     <script src="./main.js"></script>
   </body>
 </html>

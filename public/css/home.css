@@ -622,6 +622,7 @@ input, textarea, select {
 }
 
 .all__blogs table {
+    margin: 10;
     width: 100%;
     text-align: left;
 }
@@ -660,7 +661,7 @@ input, textarea, select {
     /* GENERAL */
 
     .container {
-        width: var(--container-width-md);
+        width: 88%;
     }
 
     h2 {
