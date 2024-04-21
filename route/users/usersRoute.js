@@ -14,6 +14,7 @@ const {
   blockUserCtrl,
   unBlockUserCtrl,
   profilePhotoUploadCtrl,
+  forgetLoadCtrl,
 } = require("../../controllers/users/usersCtrl.js");
 const authMiddleware = require("../../middleware/auth/authMiddleware.js");
 const {
@@ -28,6 +29,9 @@ userRoutes.get("/login", (req, res) => {
 });
 userRoutes.get("/register", (req, res) => {
   res.render("login.ejs");
+});
+userRoutes.get("/forget", (req, res) => {
+  res.render("forget.ejs");
 });
 userRoutes.post("/register", userRegisterCtrl);
 userRoutes.post("/login", loginUserCtrl);
@@ -49,5 +53,5 @@ userRoutes.put("/block-user/:id", authMiddleware, blockUserCtrl);
 userRoutes.post("/unblock-user/:id", authMiddleware, unBlockUserCtrl);
 userRoutes.delete("/:id", deleteUserCtrl);
 userRoutes.get("/:id", fetchUserDetailsCtrl);
-
+userRoutes.get("/forget", authMiddleware, forgetLoadCtrl);
 module.exports = userRoutes;

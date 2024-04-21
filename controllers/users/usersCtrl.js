@@ -303,8 +303,17 @@ const profilePhotoUploadCtrl = expressAsyncHandler(async (req, res) => {
   res.json(foundUser);
 });
 
+//forget password
+const forgetLoadCtrl = expressAsyncHandler(async (req, res) => {
+  try {
+    // res.render("forget");
+    console.log("helloooooo");
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
 module.exports = {
-  profilePhotoUploadCtrl,
   userRegisterCtrl,
   loginUserCtrl,
   logoutUserCtrl,
@@ -318,4 +327,6 @@ module.exports = {
   unfollowUserCtrl,
   blockUserCtrl,
   unBlockUserCtrl,
+  profilePhotoUploadCtrl,
+  forgetLoadCtrl,
 };
