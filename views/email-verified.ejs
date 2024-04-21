@@ -3,9 +3,123 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>email verified</title>
+    <title>LyfEscape.com/blogs</title>
+    <!-- CSS style sheet -->
+    <link rel="stylesheet" href="http://localhost:3000/css/home.css" />
+    <!-- FONT AWESOME -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&family=Caprasimo&family=Chela+One&family=Merriweather&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,800;1,900&family=Sacramento&family=Ubuntu&display=swap"
+      rel="stylesheet"
+    />
+    <!-- FEVICON -->
+    <link rel="icon" href="images/favicon.png" />
   </head>
   <body>
-    <h1>your email has been verified</h1>
+    <!-- NAV BAR -->
+    <nav>
+      <div class="container nav__container">
+        <a href="/" class="nav__logo">LyfEscape.com</a>
+        <ul class="nav__items">
+          <li><a href="/api/posts/">Blogs</a></li>
+          <% if (locals.user) { %>
+          <li><a href="/api/users/<%= user._id%>">Dashboard</a></li>
+          <li><a href="/api/users/logout">Logout</a></li>
+          <li class="nav__profile">
+            <div class="avatar">
+              <a href="/api/users/profile/<%- user._id %>"
+                ><img src="<%= user.profilePhoto%>"
+              /></a>
+            </div>
+          </li>
+          <% } else { %>
+          <li><a href="/api/users/login">Login</a></li>
+          <% } %>
+        </ul>
+
+        <button id="open_nav-btn">
+          <i class="fa-solid fa-bars" style="color: #2b5eb6"></i>
+        </button>
+        <button id="open_nav-btn"></button>
+      </div>
+    </nav>
+
+    <!-- SINGLE POST -->
+    <section class="singlepost">
+      <dia class="container singlepost__container">
+        <div class="verification__message">
+          <h2>Your Email has Successfully Verified</h2>
+          <br />
+          <i class="fas fa-check-circle verification__icon"></i><br />
+          
+            <button class="verification__button" ><a href="http://localhost:3000/">Ok</a></button>
+          
+        </div>
+      </div>
+    </section>
+    <!-- ABOUT -->
+    <footer>
+      <div class="footer__socials">
+        <a href="" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="" target="_blank"><i class="fa-brands fa-github"></i></a>
+        <a href="" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+      </div>
+      <div class="container footer__container">
+        <article>
+          <h4>Categories</h4>
+          <ul>
+            <li><a href="">Sports</a></li>
+            <li><a href="">Travel</a></li>
+            <li><a href="">Wildlife</a></li>
+            <li><a href="">Food</a></li>
+            <li><a href="">Music</a></li>
+            <li><a href="">Lifestyle</a></li>
+          </ul>
+        </article>
+        <article>
+          <h4>Support</h4>
+          <ul>
+            <li><a href="">Online Number</a></li>
+            <li><a href="">Call Numbers</a></li>
+            <li><a href="">Email</a></li>
+            <li><a href="">Social Support</a></li>
+            <li><a href="">Location</a></li>
+          </ul>
+        </article>
+        <article>
+          <h4>Blogs</h4>
+          <ul>
+            <li><a href="">Safety</a></li>
+            <li><a href="">Repair</a></li>
+            <li><a href="">Recent</a></li>
+            <li><a href="">Popular</a></li>
+            <li><a href="">Categories</a></li>
+          </ul>
+        </article>
+        <article>
+          <h4>Permalinks</h4>
+          <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">Blog</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">Services</a></li>
+            <li><a href="">Contact</a></li>
+          </ul>
+        </article>
+      </div>
+      <div class="footer__copyright">
+        <small>Copyright &copy; BYTEBRIGADE</small>
+      </div>
+    </footer>
+    <!-- Your footer code here -->
+    <script src="./main.js"></script>
   </body>
 </html>

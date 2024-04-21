@@ -14,12 +14,9 @@ const {
   blockUserCtrl,
   unBlockUserCtrl,
   profilePhotoUploadCtrl,
+  forgetLoadCtrl,
 } = require("../../controllers/users/usersCtrl.js");
 const authMiddleware = require("../../middleware/auth/authMiddleware.js");
-const {
-  photoUpload,
-  profilePhotoResize,
-} = require("../../middleware/uploads/photoUpload.js");
 const {
   photoUpload,
   profilePhotoResize,
