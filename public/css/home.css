@@ -133,6 +133,14 @@ nav button {
     display: flex;
     align-items: center;
     gap: 4rem;
+    background-color: white; /* Set a contrasting background color */
+    opacity: 1; /* Ensure full opacity */
+}
+
+/* Ensure list items have contrasting background and text colors */
+.nav__items li {
+    background-color: white;
+    color: black; /* Adjust text color as needed */
 }
 
 .nav__profile {
@@ -323,7 +331,7 @@ footer ul a:hover {
     margin-top: 7rem;
 }
 
-.search__bar-container {
+.search__bar-cantainer {
     position: relative;
     width: 30rem;
     background: var(--color-gray-700) ;
@@ -337,7 +345,7 @@ footer ul a:hover {
     color: var(--color-gray-300);
 }
 
-.search__bar-container > div {
+.search__bar-cantainer > div {
     width: 100%;
     display: flex;
     align-items: center;
@@ -399,6 +407,12 @@ footer ul a:hover {
     padding: 1rem 2rem 3rem;
     
 
+}
+.dropdown-menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1; /* Adjust as needed */
 }
 
 .singlepost__container p {
@@ -649,7 +663,40 @@ input, textarea, select {
     padding-bottom: 40px;
 }
 
+/* Email Verification */
 
+/* .singlepost {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+} */
+
+.verification__message {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.verification__icon {
+  font-size: 3rem;
+  color: #2ecc71; /* Green color for verification */
+  margin-bottom: 20px; /* Add space below the icon */
+}
+
+.verification__button {
+  background-color: #2ecc71; /* Green color for button */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin: 50px 20px;
+}
+
+.verification__button:hover {
+  background-color: #27ae60; /* Darker shade of green on hover */
+}
 
 
 
@@ -815,6 +862,13 @@ input, textarea, select {
     .dashboard main table tr:hover td {
         background: transparent;
     } 
+
+    /* USER PROFILE */
+    .profile__box{
+        width: var(--container-width-md);
+        align-items: center;
+    }
+
 }
 
 /* RESPONSIVE (SMALL DEVICES) */
@@ -832,7 +886,10 @@ input, textarea, select {
     .featured {
         margin-top: 6rem;
     }
-
+.nav__items {
+    display: block; /* Change to display:block or display:flex */
+    /* Other styles */
+  }
     .featured__container {
         grid-template-columns: 1fr;
         gap: 0;
@@ -918,8 +975,13 @@ input, textarea, select {
     .dashboard aside a h5 {
         display: inline-block;
     }
-
+.nav__profile:hover > ul {
+        visibility: visible;
+        opacity: 1;
+    }
     #hide__sidebar-btn {
         display: none;
     }
+
+
 }
