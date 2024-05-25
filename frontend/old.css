@@ -133,13 +133,13 @@ nav button {
     display: flex;
     align-items: center;
     gap: 4rem;
-    
+    background-color: white; /* Set a contrasting background color */
     opacity: 1; /* Ensure full opacity */
 }
 
 /* Ensure list items have contrasting background and text colors */
 .nav__items li {
-    background-color: #6f6af8;
+    background-color: white;
     color: black; /* Adjust text color as needed */
 }
 
@@ -164,7 +164,6 @@ nav button {
 .nav_profile:hover > ul {
     visibility: visible;
     opacity: 1;
-    transition: .5s;
 }
 
 .nav__profile ul li a {
@@ -420,66 +419,6 @@ footer ul a:hover {
     margin-top: 1rem;
     line-height: 1.7;
 }
-
-/* Views icon and count */
-.post__views {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px; /* Adjust as needed */
-}
-
-.post__views i {
-  margin-right: 5px; /* Adjust as needed */
-}
-
-/* Like and dislike buttons */
-.like-dislike {
-  margin-top: 20px; /* Add space between paragraphs and buttons */
-}
-
-.like-btn, .dislike-btn {
-  background-color: #2ecc71; /* Green color for like button, you can adjust */
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 5px;
-  font-size: 1rem;
-  margin-right: 10px; /* Add space between buttons */
-}
-
-.like-btn:hover, .dislike-btn:hover {
-  background-color: #27ae60; /* Darker shade of green on hover */
-}
-
-/* Comment box */
-.comment-box {
-  margin-top: 20px; /* Add space between buttons and comment box */
-}
-
-.comment-box textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  resize: vertical;
-  margin-bottom: 10px; /* Adjust as needed */
-}
-
-.comment-box button {
-  background-color: #3498db; /* Blue color for comment button, you can adjust */
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 5px;
-  font-size: 1rem;
-}
-
-.comment-box button:hover {
-  background-color: #2980b9; /* Darker shade of blue on hover */
-}
-
 
 
 /* CATEGORY POST */
@@ -930,18 +869,6 @@ input, textarea, select {
         align-items: center;
     }
 
-}
-
-/* FORGET PASSWORD */
-
-.forgetpassword{
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-
-.forgetpassword1{
-    margin-top: 30px;
-    margin-bottom: 30px;
 }
 
 /* RESPONSIVE (SMALL DEVICES) */
