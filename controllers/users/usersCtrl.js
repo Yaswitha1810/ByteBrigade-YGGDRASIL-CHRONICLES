@@ -62,13 +62,16 @@ const userRegisterCtrl = expressAsyncHandler(async (req, res) => {
       // Send the email
       transporter
         .sendMail(message)
-        .then((info) => {
-          return res.status(201).json({
-            msg: "You should receive an email shortly.",
-            info: info.messageId,
-            preview: nodemailer.getTestMessageUrl(info),
-          });
-        })
+        .then(
+          res.render("verify")
+        //   (info) => {
+        //   return res.status(201).json({
+        //     msg: "You should receive an email shortly.",
+        //     info: info.messageId,
+        //     preview: nodemailer.getTestMessageUrl(info),
+        //   });
+        // }
+      )
         .catch((error) => {
           return res.status(500).json({ error });
         });
@@ -80,7 +83,6 @@ const userRegisterCtrl = expressAsyncHandler(async (req, res) => {
     } else {
       return res.status(400).json({ message: "Your registration has failed" });
     }
-
     // res.redirect("/");
   } catch (error) {
     return res.status(500).json({ error: error.message });
@@ -391,6 +393,7 @@ const forgetPasswordLoad = async (req, res) => {
     console.log(error.message);
   }
 };
+
 const securePassword = async (password) => {
   try {
     const passwordHash = await bcrypt.hash(password, 10);

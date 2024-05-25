@@ -28,6 +28,6 @@ postRoute.post("/search",searchPostsCtrl);
 postRoute.get("/category/:id",fetchCategoryPostCtrl);
 postRoute.get("/:id",fetchPostCtrl);
 postRoute.post("/:id",authMiddleware, updatePostCtrl);
-postRoute.delete("/:id",authMiddleware, deletePostCtrl);
+postRoute.post("/delete/:id",authMiddleware, deletePostCtrl);
 
 module.exports = postRoute;

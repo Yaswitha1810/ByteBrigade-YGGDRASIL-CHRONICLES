@@ -116,7 +116,10 @@
                 <td><%- user.posts[i].category %></td>
                 <td><a href="edit-post.html" class="btn sm">Edit</a></td>
                 <% var url = "/api/posts/"+ user.posts[i]._id %>
-                <td><a href="<% url %>" class="btn sm danger">Delete</a></td>
+                <td><form method="post" action="/api/posts/delete/<%- user.posts[i]._id %>" >
+                  <button class="btn sm danger">Delete </button>
+                  </form>
+              </td>
               </tr>
               <% } %> <% } %>
             </tbody>
