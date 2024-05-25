@@ -393,13 +393,32 @@ footer ul a:hover {
 
 /* SINGLE POST */
 
+.singlepost h2 {
+  margin-bottom: 10px;
+}
+
+.post__views {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.post__views i {
+  margin-right: 5px;
+}
+
+
+.comment-box {
+  margin-top: 20px;
+}
+
 .singlepost {
     margin: 6rem 0 2rem;
     align-items: center;
 }
 
 .singlepost__thumbnail {
-    margin: 1.5rem 0 1rem;
+    margin: 1rem 0 1rem;
 }
 
 .singlepost__container {
@@ -435,6 +454,10 @@ footer ul a:hover {
 /* Like and dislike buttons */
 .like-dislike {
   margin-top: 20px; /* Add space between paragraphs and buttons */
+  display: flex;
+  justify-content: space-between;
+  width: 200px; /* Adjust the width as needed */
+  margin-bottom: 20px;
 }
 
 .like-btn, .dislike-btn {
@@ -446,6 +469,10 @@ footer ul a:hover {
   border-radius: 5px;
   font-size: 1rem;
   margin-right: 10px; /* Add space between buttons */
+  width: 100px; /* Adjust the width as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .like-btn:hover, .dislike-btn:hover {
@@ -1056,5 +1083,18 @@ input, textarea, select {
         display: none;
     }
 
+/* follow un follow button */
+}
+.bottom {
+  text-align: center; /* Center the content */
+}
 
+.follow-form,
+.unfollow-form {
+  display: inline-block; /* Arrange the forms side by side */
+}
+
+.follow-btn,
+.unfollow-btn {
+  margin: 0 5px; /* Add some space between the buttons */
 }
