@@ -5,6 +5,7 @@ const User = require("../../model/user/User");
 const generateToken = require("../../config/token/generateToken");
 const validateMongodbId = require("../../utils/validateMongodbId");
 const cloudinaryUploadImg = require("../../utils/cloudinary");
+const randomstring = require("randomstring");
 const {
   sendVerifyMailCtrl,
   verifyMail,
@@ -304,14 +305,116 @@ const profilePhotoUploadCtrl = expressAsyncHandler(async (req, res) => {
 });
 
 //forget password
-const forgetLoadCtrl = expressAsyncHandler(async (req, res) => {
+const forgetVerifyCtrl = expressAsyncHandler(async (req, res) => {
   try {
-    // res.render("forget");
-    console.log("helloooooo");
+    const email = req.body.email;
+    console.log(email);
+    const userData = await User.findOne({ email: email });
+    if (userData) {
+      if (userData.isAccountVerified === false) {
+        res.render("forget", { message: "please verify your mail" });
+      } else {
+        const randomString = randomstring.generate();
+
+        const email = userdata.email;
+        const name = userData.name;
+        const updatedData = await User.updateOne(
+          { email: email },
+          { $set: { token: randomString } }
+        );
+        sendResetPasswordMail(userData.name, userData.email, randomString);
+        res.render("forget", {
+          message: "Please check your mail to reset your password",
+        });
+      }
+    } else {
+      res.render("forget", { message: "User email not found" });
+    }
   } catch (error) {
     console.log(error.message);
   }
 });
+
+//mail for reset password
+// Use sendVerifyMailCtrl
+
+const sendResetPasswordMail = async (name, email, token) => {
+  try {
+    console.log("blah blah");
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
+      auth: {
+        user: process.env.SERVER_MAIL,
+        pass: process.env.SERVER_PASS,
+      },
+    });
+
+    // Compose the email message
+    let message = {
+      from: process.env.SERVER_MAIL, // Sender address
+      to: email, // Receiver's email
+      subject: "Reset Password", // Subject line
+      text: `Hi ${name}, please click the link to reset your password.`, // Plain text body
+      html: `<b>Hey ${name}!</b><br/><br/>Please click <a href="http://localhost:3000/api/users/forget-password/${token}">here</a> to reset your password.`, // HTML body
+    };
+
+    // Send the email
+    let info = await transporter.sendMail(message);
+    console.log("Sent reset password email", info.messageId);
+    return {
+      messageId: info.messageId,
+      preview: nodemailer.getTestMessageUrl(info),
+    };
+  } catch (error) {
+    console.error("Error sending email:", error);
+    throw error;
+  }
+};
+
+const forgetPasswordLoad = async (req, res) => {
+  try {
+    console.log("helloo");
+    const token = req.query.token;
+    const tokenData = await User.findOne({ token: token });
+    if (tokenData) {
+      res.render("forget-password", { user_id: tokenData._id });
+    } else {
+      res.render("404", { message: "token is invalid." });
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+const securePassword = async (password) => {
+  try {
+    const passwordHash = await bcrypt.hash(password, 10);
+    return passwordHash;
+  } catch (error) {
+    console.log(error.message);
+    throw error; // Rethrow the error to handle it outside the function if needed
+  }
+};
+
+const resetPassword = async (req, res) => {
+  try {
+    const password = req.body.password;
+    const user_id = req.body.user_id;
+
+    const secure_password = securePassword(password);
+    const updatedData = await User.findByIdAndUpdate(
+      { _id: user_id },
+      { $set: { password: secure_password, token: "" } }
+    );
+
+    res.redirect("/");
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
 module.exports = {
   userRegisterCtrl,
@@ -328,5 +431,8 @@ module.exports = {
   blockUserCtrl,
   unBlockUserCtrl,
   profilePhotoUploadCtrl,
-  forgetLoadCtrl,
+  forgetVerifyCtrl,
+  forgetPasswordLoad,
+  securePassword,
+  resetPassword,
 };

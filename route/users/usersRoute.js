@@ -14,7 +14,9 @@ const {
   blockUserCtrl,
   unBlockUserCtrl,
   profilePhotoUploadCtrl,
-  forgetLoadCtrl,
+  forgetVerifyCtrl,
+  forgetPasswordLoad,
+  resetPassword,
 } = require("../../controllers/users/usersCtrl.js");
 const authMiddleware = require("../../middleware/auth/authMiddleware.js");
 const {
@@ -29,6 +31,9 @@ userRoutes.get("/login", (req, res) => {
 });
 userRoutes.get("/register", (req, res) => {
   res.render("login.ejs");
+});
+userRoutes.get("/forget", (req, res) => {
+  res.render("forget.ejs");
 });
 userRoutes.post("/register", userRegisterCtrl);
 userRoutes.post("/login", loginUserCtrl);
@@ -45,11 +50,12 @@ userRoutes.put(
 userRoutes.put("/:id", authMiddleware, updateUserCtrl);
 userRoutes.put("/password", authMiddleware, updateUserPasswordCtrl);
 userRoutes.post("/follow", authMiddleware, followingUserCtrl);
-userRoutes.put("/unfollow", authMiddleware, unfollowUserCtrl);
-userRoutes.put("/block-user/:id", authMiddleware, blockUserCtrl);
-userRoutes.put("/unblock-user/:id", authMiddleware, unBlockUserCtrl);
+userRoutes.post("/unfollow", authMiddleware, unfollowUserCtrl);
+userRoutes.post("/block-user/:id", authMiddleware, blockUserCtrl);
+userRoutes.post("/unblock-user/:id", authMiddleware, unBlockUserCtrl);
 userRoutes.delete("/:id", deleteUserCtrl);
 userRoutes.get("/:id", fetchUserDetailsCtrl);
-userRoutes.post("/forget", forgetLoadCtrl);
-
+userRoutes.post("/forget", forgetVerifyCtrl);
+userRoutes.get("/forget-password/:token", forgetPasswordLoad);
+userRoutes.post("/forget-password", resetPassword);
 module.exports = userRoutes;
