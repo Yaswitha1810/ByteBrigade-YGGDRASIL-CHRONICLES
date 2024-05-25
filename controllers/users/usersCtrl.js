@@ -315,14 +315,15 @@ const forgetVerifyCtrl = expressAsyncHandler(async (req, res) => {
         res.render("forget", { message: "please verify your mail" });
       } else {
         const randomString = randomstring.generate();
-
-        const email = userdata.email;
-        const name = userData.name;
         const updatedData = await User.updateOne(
           { email: email },
           { $set: { token: randomString } }
         );
-        sendResetPasswordMail(userData.name, userData.email, randomString);
+        await sendResetPasswordMail(
+          userData.name,
+          userData.email,
+          randomString
+        );
         res.render("forget", {
           message: "Please check your mail to reset your password",
         });
