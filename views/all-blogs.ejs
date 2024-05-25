@@ -86,7 +86,7 @@
                 <div class="post__info">
                 <a href="/api/posts/<%= post._id %>" >
                     <a href="" class="category__button"><%- post.category %></a>
-                    <h3 class="post__title"><%- post.title %></h3>
+                    <a href="/api/posts/<%= post._id %>"><h3 class="post__title"><%- post.title %></h3></a>
                     <p class="post__body"><%- post.description.substring(0,200)%>...</p>
                 </a>
                     <div class="post__author">

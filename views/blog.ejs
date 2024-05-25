@@ -112,7 +112,7 @@
         <div class="post__views">
           <i class="far fa-eye"></i>
           <!-- Using Font Awesome for views icon -->
-          <span class="views__count">1000</span>
+          <span class="views__count"><%-post.numViews%></span>
           <!-- Example count, replace with actual count -->
         </div>
         <h2><%- post.title %></h2>
@@ -136,12 +136,18 @@
         <p><%- post.description %></p>
         <!-- Like and dislike buttons -->
         <div class="like-dislike">
-          <button class="like-btn">
-            <i class="far fa-thumbs-up"></i> Like
-          </button>
-          <button class="dislike-btn">
-            <i class="far fa-thumbs-down"></i> Dislike
-          </button>
+          <form action="/api/posts/likes" method="post" >
+            <input style="display: none;" name="postId" value="<%- post._id %>">
+            <button class="like-btn">
+              <i class="far fa-thumbs-up"></i> Like
+            </button>
+          </form>
+          <form action="/api/posts/dislikes" method="post" >
+            <input style="display: none;" name="postId" value="<%- post._id %>">
+            <button class="dislike-btn">
+              <i class="far fa-thumbs-down"></i> Dislike
+            </button>
+          </form>
         </div>
 
         <!-- Comment box -->

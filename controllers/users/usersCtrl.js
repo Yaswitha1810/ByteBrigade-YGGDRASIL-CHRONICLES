@@ -231,7 +231,8 @@ const followingUserCtrl = expressAsyncHandler(async (req, res) => {
     },
     { new: true }
   );
-  res.json("you have successfully followed this user");
+  const url = "/api/users/profile/" + followId?.toString();
+  res.redirect(url);
 });
 
 //unfollow
@@ -251,11 +252,12 @@ const unfollowUserCtrl = expressAsyncHandler(async (req, res) => {
   await User.findByIdAndUpdate(
     loginUserId,
     {
-      $pull: { following: unFollowId },
+      $pull: { following: unfollowId },
     },
     { new: true }
   );
-  res.json("you have succesfully unfollowed this user");
+  const url = "/api/users/profile/" + unfollowId?.toString();
+  res.redirect(url);
 });
 
 //block user

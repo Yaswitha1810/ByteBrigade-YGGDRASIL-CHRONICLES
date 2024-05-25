@@ -166,7 +166,6 @@ const toggleAddLikeToPostCtrl = expressAsyncHandler(async (req, res) => {
       },
       { new: true }
     );
-    res.json(post);
   }
   //if already liked, now wants to remove it
   if (isLiked) {
@@ -178,7 +177,6 @@ const toggleAddLikeToPostCtrl = expressAsyncHandler(async (req, res) => {
       },
       { new: true }
     );
-    res.json(post);
   } else {
     const post = await Post.findByIdAndUpdate(
       postId,
@@ -188,8 +186,9 @@ const toggleAddLikeToPostCtrl = expressAsyncHandler(async (req, res) => {
       },
       { new: true }
     );
-    res.json(post);
   }
+  const url = "/api/posts/" + postId;
+  res.redirect(url);
 });
 
 //dislike post
@@ -210,9 +209,7 @@ const toggleAddDislikeToPostCtrl = expressAsyncHandler(async (req, res) => {
       },
       { new: true }
     );
-    res.json(post);
   }
-
   if (isDisliked) {
     const post = await Post.findByIdAndUpdate(
       postId,
@@ -222,7 +219,6 @@ const toggleAddDislikeToPostCtrl = expressAsyncHandler(async (req, res) => {
       },
       { new: true }
     );
-    res.json(post);
   } else {
     const post = await Post.findByIdAndUpdate(
       postId,
@@ -232,8 +228,9 @@ const toggleAddDislikeToPostCtrl = expressAsyncHandler(async (req, res) => {
       },
       { new: true }
     );
-    res.json(post);
   }
+  const url = "/api/posts/" + postId;
+  res.redirect(url);
 });
 
 module.exports = {

@@ -16,8 +16,8 @@ const { photoUpload,
 const postRoute = express.Router();
 
 //uploading pictures is pending!!
-postRoute.put("/likes",authMiddleware, toggleAddLikeToPostCtrl);
-postRoute.put("/dislikes",authMiddleware,toggleAddDislikeToPostCtrl);
+postRoute.post("/likes",authMiddleware, toggleAddLikeToPostCtrl);
+postRoute.post("/dislikes",authMiddleware,toggleAddDislikeToPostCtrl);
 postRoute.get("/create", getCreatePageCtrl)
 postRoute.post("/create",authMiddleware,
                         photoUpload.single("image"),

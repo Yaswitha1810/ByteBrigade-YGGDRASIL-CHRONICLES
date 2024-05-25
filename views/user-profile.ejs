@@ -84,8 +84,14 @@
           </div>
 
           <div class="bottom">
-            <button class="btn">Follow</button>
-            <button class="btn">Unfollow</button>
+            <form action="/api/users/follow" method="post" >
+              <input style="display: none;" name="followId" value="<%- user._id %>">
+              <button class="btn">Follow</button>
+            </form>
+            <form action="/api/users/unfollow" method="post" >
+              <input style="display: none;" name="unfollowId" value="<%- user._id %>">
+              <button class="btn">Unfollow</button>
+            </form>
             <p><%- user.bio %></p>
           </div>
 
@@ -93,14 +99,15 @@
             <h3>All Blogs</h3>
             <table>
               <tbody>
-                <% if(user.posts != '' ) { %> <% for(var i=0 ; i <
-                user.posts.length ; i++){ %>
-                <tr>
-                  <td><%- user.posts[i].title %></td>
-                  <td><%- user.posts[i].category %></td>
-                  <td><img src="<%- user.posts[i].image %>" alt="" /></td>
-                </tr>
-                <% } %> <% } %>
+                <% if(user.posts != '' ) { %> 
+                  <% for(var i=0 ; i < user.posts.length ; i++){ %>
+                    <tr>
+                      <td><%- user.posts[i].title %></td>
+                      <td><%- user.posts[i].category %></td>
+                      <td><img src="<%- user.posts[i].image %>" alt="" /></td>
+                    </tr>
+                  <% } %> 
+                <% } %>
               </tbody>
             </table>
           </div>
