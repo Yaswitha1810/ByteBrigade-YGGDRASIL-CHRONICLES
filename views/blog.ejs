@@ -108,6 +108,13 @@
 
     <section class="singlepost">
       <div class="container singlepost__container">
+        <!-- Added views icon and count -->
+        <div class="post__views">
+          <i class="far fa-eye"></i>
+          <!-- Using Font Awesome for views icon -->
+          <span class="views__count">1000</span>
+          <!-- Example count, replace with actual count -->
+        </div>
         <h2><%- post.title %></h2>
         <div class="post__author">
           <a href="/api/users/profile/<%- post.user._id %>">
@@ -127,6 +134,21 @@
           <img src="<%- post.image %>" alt="" />
         </div>
         <p><%- post.description %></p>
+        <!-- Like and dislike buttons -->
+        <div class="like-dislike">
+          <button class="like-btn">
+            <i class="far fa-thumbs-up"></i> Like
+          </button>
+          <button class="dislike-btn">
+            <i class="far fa-thumbs-down"></i> Dislike
+          </button>
+        </div>
+
+        <!-- Comment box -->
+        <div class="comment-box">
+          <textarea placeholder="Add your comment"></textarea>
+          <button class="comment-btn">Comment</button>
+        </div>
       </div>
     </section>
 
