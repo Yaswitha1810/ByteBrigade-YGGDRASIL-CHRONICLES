@@ -10,6 +10,7 @@ const {
   sendVerifyMailCtrl,
   verifyMail,
 } = require("../EmailMessaging/emailMsgCtrl.js");
+
 //Register
 const userRegisterCtrl = expressAsyncHandler(async (req, res) => {
   // Check if user already exists
