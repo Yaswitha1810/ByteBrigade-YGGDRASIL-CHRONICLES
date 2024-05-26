@@ -64,33 +64,10 @@
 
     <section class="singlepost">
       <div class="container singlepost__container">
-        <!-- Added views icon and count -->
-        <div class="post__views">
-          <i class="far fa-eye"></i>
-          <!-- Using Font Awesome for views icon -->
-          <span class="views__count">1000</span>
-          <!-- Example count, replace with actual count -->
-        </div>
-
         <div class="singlepost__header">
           <h2>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, saepe?
           </h2>
-          <!-- Example single danger button
-          <div class="btn-group">
-            <button
-              type="button"
-              class="btn btn-danger dropdown-toggle"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <i class="fa-solid fa-bars"></i>
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Edit Post</a></li>
-              <li><a class="dropdown-item" href="#">Delete Post</a></li>
-            </ul>
-          </div> -->
         </div>
 
         <div class="post__author">
@@ -107,55 +84,92 @@
           <img src="./images/blog3.webp" alt="" />
         </div>
 
-        <!-- Add views icon and count above the image -->
+        <div class="singlepost__content">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias quos
+            illum, distinctio quo rem libero, quis recusandae eius fuga, quasi
+            necessitatibus odio nihil ipsa excepturi qui ipsum ab voluptatum
+            blanditiis nostrum? Minima eveniet iste iusto dignissimos fugit
+            beatae commodi veritatis.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias quos
+            illum, distinctio quo rem libero, quis recusandae eius fuga, quasi
+            necessitatibus odio nihil ipsa excepturi qui ipsum ab voluptatum
+            blanditiis nostrum? Minima eveniet iste iusto dignissimos fugit
+            beatae commodi veritatis.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias quos
+            illum, distinctio quo rem libero, quis recusandae eius fuga, quasi
+            necessitatibus odio nihil ipsa excepturi qui ipsum ab voluptatum
+            blanditiis nostrum? Minima eveniet iste iusto dignissimos fugit
+            beatae commodi veritatis. Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Alias quos illum, distinctio quo rem libero, quis
+            recusandae eius fuga, quasi necessitatibus odio nihil ipsa excepturi
+            qui ipsum ab voluptatum blanditiis nostrum? Minima eveniet iste
+            iusto dignissimos fugit beatae commodi veritatis.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias quos
+            illum, distinctio quo rem libero, quis recusandae eius fuga, quasi
+            necessitatibus odio nihil ipsa excepturi qui ipsum ab voluptatum
+            blanditiis nostrum? Minima eveniet iste iusto dignissimos fugit
+            beatae commodi veritatis.
+          </p>
 
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias quos
-          illum, distinctio quo rem libero, quis recusandae eius fuga, quasi
-          necessitatibus odio nihil ipsa excepturi qui ipsum ab voluptatum
-          blanditiis nostrum? Minima eveniet iste iusto dignissimos fugit beatae
-          commodi veritatis.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias quos
-          illum, distinctio quo rem libero, quis recusandae eius fuga, quasi
-          necessitatibus odio nihil ipsa excepturi qui ipsum ab voluptatum
-          blanditiis nostrum? Minima eveniet iste iusto dignissimos fugit beatae
-          commodi veritatis.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias quos
-          illum, distinctio quo rem libero, quis recusandae eius fuga, quasi
-          necessitatibus odio nihil ipsa excepturi qui ipsum ab voluptatum
-          blanditiis nostrum? Minima eveniet iste iusto dignissimos fugit beatae
-          commodi veritatis. Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Alias quos illum, distinctio quo rem libero, quis recusandae
-          eius fuga, quasi necessitatibus odio nihil ipsa excepturi qui ipsum ab
-          voluptatum blanditiis nostrum? Minima eveniet iste iusto dignissimos
-          fugit beatae commodi veritatis.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias quos
-          illum, distinctio quo rem libero, quis recusandae eius fuga, quasi
-          necessitatibus odio nihil ipsa excepturi qui ipsum ab voluptatum
-          blanditiis nostrum? Minima eveniet iste iusto dignissimos fugit beatae
-          commodi veritatis.
-        </p>
+          <!-- Like and dislike buttons and counts in the same line -->
+          <div class="post__stats-and-buttons">
+            <div class="like-dislike">
+              <button class="like-btn">
+                <i class="far fa-thumbs-up"></i> Like
+              </button>
+              <button class="dislike-btn">
+                <i class="far fa-thumbs-down"></i> Dislike
+              </button>
+            </div>
 
-        <!-- Like and dislike buttons -->
-        <div class="like-dislike">
-          <button class="like-btn">
-            <i class="far fa-thumbs-up"></i> Like
-          </button>
-          <button class="dislike-btn">
-            <i class="far fa-thumbs-down"></i> Dislike
-          </button>
+            <div class="post__stats">
+              <div class="post__views">
+                <i class="far fa-eye"></i>
+                <span class="views__count">1000</span>
+              </div>
+              <div class="post__likes">
+                <i class="far fa-thumbs-up"></i>
+                <span class="likes__count">500</span>
+              </div>
+              <div class="post__dislikes">
+                <i class="far fa-thumbs-down"></i>
+                <span class="dislikes__count">50</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Comment box -->
         <div class="comment-box">
           <textarea placeholder="Add your comment"></textarea>
           <button class="comment-btn">Comment</button>
+        </div>
+
+        <!-- Sample comments -->
+        <div class="comments">
+          <hr class="comment-separator" />
+          <p>
+            John Doe: This article really captures the essence of India's
+            wildlife. Can't wait to visit someday!
+          </p>
+          <hr class="comment-separator" />
+          <p>
+            Jane Smith: I absolutely loved reading this! The photos are stunning
+            and the information is so well presented.
+          </p>
+          <hr class="comment-separator" />
+          <p>
+            Sam Wilson: Great insights into the wildlife of India. This has
+            definitely added to my travel bucket list.
+          </p>
+          <hr class="comment-separator" />
         </div>
       </div>
     </section>

@@ -251,6 +251,48 @@ nav button {
     
 }
 
+/* styleS.css */
+
+/* Style for the horizontal rule between comments */
+.comment-separator {
+  border: none;
+  border-top: 1px solid #fff; /* Adjust the color as needed */
+  margin: 1em 0; /* Adjust the margin as needed */
+}
+
+/* Style for the post stats and buttons */
+.post__stats-and-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.like-dislike button {
+  color: #fff; /* Set button text color to white */
+}
+
+.post__stats {
+  display: flex;
+  gap: 20px;
+  color: #fff; /* Set stats text color to white */
+}
+
+.post__views, .post__likes, .post__dislikes {
+  display: flex;
+  align-items: center;
+}
+
+.post__views i, .post__likes i, .post__dislikes i {
+  margin-right: 5px;
+}
+
+.singlepost__thumbnail {
+  position: relative;
+}
+
+
+
 /* CATEGORY BUTTONS */
 
 .category__buttons {
