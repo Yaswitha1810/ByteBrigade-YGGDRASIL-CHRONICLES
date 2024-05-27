@@ -28,7 +28,7 @@
       rel="stylesheet"
     />
 
-    <!-- FEVICON -->
+    <!-- FAVICON -->
     <link rel="icon" href="images/favicon.png" />
   </head>
   <body>
@@ -63,21 +63,19 @@
     <section class="singlepost">
       <div class="container singlepost__container">
         <h2><%- post.title %></h2>
-        <!-- Added views icon and count below the title -->
-        <div class="post__stats-and-buttons">
-          <div class="post__stats">
-            <div class="post__views">
-              <i class="far fa-eye"></i>
-              <span class="views__count"><%-post.numViews%></span>
-            </div>
-            <div class="post__likes">
-              <i class="far fa-thumbs-up"></i>
-              <span class="likes__count"><%-post.likes.length%></span>
-            </div>
-            <div class="post__dislikes">
-              <i class="far fa-thumbs-down"></i>
-              <span class="dislikes__count"><%-post.dislikes.length %></span>
-            </div>
+        <!-- Added views, likes, and dislikes below the title in one line -->
+        <div class="post__stats">
+          <div class="post__views">
+            <i class="far fa-eye"></i>
+            <span class="views__count"><%- post.numViews %></span>
+          </div>
+          <div class="post__likes">
+            <i class="far fa-thumbs-up like-icon"></i>
+            <span class="likes__count"><%- post.likes.length %></span>
+          </div>
+          <div class="post__dislikes">
+            <i class="far fa-thumbs-down dislike-icon"></i>
+            <span class="dislikes__count"><%- post.dislikes.length %></span>
           </div>
         </div>
         <div class="post__author">
@@ -124,19 +122,19 @@
 
         <!-- Comment box -->
         <div class="comments">
-          <% if(post.comments!= '' ) { %>
-            <% post.comments.forEach((comment,index)=>{ %>
-            <hr class="comment-separator" />
-            <p>
-              <%- comment.user.userName %>: <%- comment.description %>
-            </p>
-            <% }) %>
-          <% } %>
+          <% if(post.comments!= '' ) { %> <%
+          post.comments.forEach((comment,index)=>{ %>
+          <hr class="comment-separator" />
+          <p><%- comment.user.userName %>: <%- comment.description %></p>
+          <% }) %> <% } %>
         </div>
         <div class="comment-box">
           <form method="post" action="/api/comments/">
-            <textarea placeholder="Add your comment" name="description"></textarea>
-            <input type="hidden" name="postId" value="<%- post._id%>">
+            <textarea
+              placeholder="Add your comment"
+              name="description"
+            ></textarea>
+            <input type="hidden" name="postId" value="<%- post._id%>" />
             <button type="submit" class="comment-btn">Comment</button>
           </form>
         </div>

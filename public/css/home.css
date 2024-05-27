@@ -440,45 +440,118 @@ footer ul a:hover {
     line-height: 1.7;
 }
 
+/* Container for the post stats */
+.post__stats {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+/* Icon and count for views, likes, and dislikes */
+.post__stats div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.post__stats i {
+  font-size: 1.2rem;
+}
+
+/* Like and Dislike buttons */
+.like-dislike {
+  display: flex;
+  gap: 1rem;
+}
+
+.like-btn, .dislike-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 2px solid white;
+  border-radius: 0.5rem;
+  background: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: white;
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.like-btn i, .dislike-btn i {
+  color: white;
+}
+
+/* Filled states for like and dislike buttons */
+.like-btn.clicked, .dislike-btn.clicked {
+  border-color: green;
+  background: green;
+  color: white;
+}
+
+.like-btn.clicked i, .dislike-btn.clicked i {
+  color: white;
+}
+
+/* Hover states for like and dislike buttons */
+.like-btn:hover, .dislike-btn:hover {
+  border-color: green;
+  color: green;
+}
+
+.like-btn:hover i, .dislike-btn:hover i {
+  color: green;
+}
+
+.like-btn.clicked:hover, .dislike-btn.clicked:hover {
+  border-color: darkgreen;
+  background: darkgreen;
+}
+
 /* Views icon and count */
+
+/*
 .post__views {
   display: flex;
   align-items: center;
-  margin-bottom: 10px; /* Adjust as needed */
+  margin-bottom: 10px; 
 }
 
 .post__views i {
-  margin-right: 5px; /* Adjust as needed */
+  margin-right: 5px; 
 }
 
 /* Like and dislike buttons */
+/*
 .like-dislike {
-  margin-top: 20px; /* Add space between paragraphs and buttons */
+  margin-top: 20px; 
   display: flex;
   justify-content: space-between;
-  width: 200px; /* Adjust the width as needed */
+  width: 200px;
   margin-bottom: 20px;
 }
 
 .like-btn, .dislike-btn {
-  background-color: #2ecc71; /* Green color for like button, you can adjust */
+  background-color: #2ecc71;
   color: white;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 5px;
   font-size: 1rem;
-  margin-right: 10px; /* Add space between buttons */
-  width: 100px; /* Adjust the width as needed */
+  margin-right: 10px; 
+  width: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .like-btn:hover, .dislike-btn:hover {
-  background-color: #27ae60; /* Darker shade of green on hover */
+  background-color: #27ae60; 
 }
-
+*/
 /* Comment box */
 .comment-box {
   margin-top: 20px; /* Add space between buttons and comment box */
