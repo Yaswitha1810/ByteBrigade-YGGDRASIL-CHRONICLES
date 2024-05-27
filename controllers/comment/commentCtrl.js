@@ -1,6 +1,7 @@
 const expressAsyncHandler = require("express-async-handler");
 const Comment = require("../../model/comment/Comment");
 const validateMongodbId = require("../../utils/validateMongodbId");
+const Post = require("../../model/post/Post");
 
 //create comment
 const createCommentCtrl = expressAsyncHandler(async(req,res)=>{
@@ -12,7 +13,15 @@ const createCommentCtrl = expressAsyncHandler(async(req,res)=>{
             user,
             description,
         });
-        res.json(comment);
+        const commentId = comment._id;
+        const post = await Post.findByIdAndUpdate(
+            postId, 
+            {
+                $push: { comments: commentId },
+            },
+            { new: true }
+        )
+        res.redirect("/api/posts/"+postId);
     }catch(error){
         res.json(error);
     }

@@ -114,10 +114,15 @@
               <tr>
                 <td><%- user.posts[i].title %></td>
                 <td><%- user.posts[i].category %></td>
-                <td><a href="edit-post.html" class="btn sm">Edit</a></td>
-                <% var url = "/api/posts/"+ user.posts[i]._id %>
-                <td><form method="post" action="/api/posts/delete/<%- user.posts[i]._id %>" >
-                  <button class="btn sm danger">Delete </button>
+                <td>
+                  <form method="get" action="/api/posts/update/<%- user.posts[i]._id %>" >
+                    <button class="btn sm danger">Edit </button>
+                  </form>
+                </td>
+                <!-- <% var url = "/api/posts/"+ user.posts[i]._id %> -->
+                <td>
+                  <form method="post" action="/api/posts/delete/<%- user.posts[i]._id %>" >
+                    <button class="btn sm danger">Delete </button>
                   </form>
               </td>
               </tr>

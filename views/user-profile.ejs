@@ -84,7 +84,11 @@
           </div>
 
           <div class="bottom">
-            <form action="/api/users/follow" method="post" class="follow-form">
+            <form 
+              action="/api/users/follow" 
+              method="post" 
+              class="follow-form"
+            >
               <input type="hidden" name="followId" value="<%- user._id %>" />
               <button class="btn follow-btn">Follow</button>
             </form>

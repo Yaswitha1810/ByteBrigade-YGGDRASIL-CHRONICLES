@@ -4,6 +4,7 @@ const { getCreatePageCtrl,
         fetchPostsCtrl,
         fetchCategoryPostCtrl,
         fetchPostCtrl,
+        getUpdatePageCtrl,
         updatePostCtrl,
         deletePostCtrl,
         toggleAddLikeToPostCtrl,
@@ -27,7 +28,8 @@ postRoute.get("/",fetchPostsCtrl);
 postRoute.post("/search",searchPostsCtrl);
 postRoute.get("/category/:id",fetchCategoryPostCtrl);
 postRoute.get("/:id",fetchPostCtrl);
-postRoute.post("/:id",authMiddleware, updatePostCtrl);
+postRoute.get("/update/:id",authMiddleware, getUpdatePageCtrl);
+postRoute.post("/update",authMiddleware, updatePostCtrl);
 postRoute.post("/delete/:id",authMiddleware, deletePostCtrl);
 
 module.exports = postRoute;

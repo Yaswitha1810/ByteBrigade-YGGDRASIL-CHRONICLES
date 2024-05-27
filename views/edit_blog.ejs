@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LyfEscape.com/blog</title>
+    <title>LyfEscape.com</title>
 
     <!-- CSS style sheet -->
     <link rel="stylesheet" href="http://localhost:3000/css/home.css" />
@@ -56,92 +56,41 @@
         <button id="open_nav-btn">
           <i class="fa-solid fa-bars" style="color: #2b5eb6"></i>
         </button>
+        <button id="open_nav-btn"></button>
       </div>
     </nav>
 
-    <!-- SINGLE POST -->
-    <section class="singlepost">
-      <div class="container singlepost__container">
-        <h2><%- post.title %></h2>
-        <!-- Added views icon and count below the title -->
-        <div class="post__stats-and-buttons">
-          <div class="post__stats">
-            <div class="post__views">
-              <i class="far fa-eye"></i>
-              <span class="views__count"><%-post.numViews%></span>
+    <section class="form__section">
+        <div class="container form__section-container">
+          <h2>Add Blog</h2>
+          <form
+            action="/api/posts/update"
+            method="post"
+            enctype="multipart/form-data"
+          >
+          <input type="hidden" name="postId" value="<%- post._id %>"/>
+            <input type="text" name="title" placeholder="Title" />
+            <select name="category" id="">
+              <% if(categories!= '' ) { %> <%
+              categories.forEach((category,index)=>{ %>
+              <option value="<%- category.title %>"><%- category.title %></option>
+              <% }) %> <% } %>
+            </select>
+            <textarea
+              name="description"
+              rows="10"
+              placeholder="Blog Content"
+            ></textarea>
+            <div class="form__control">
+              <label for="thumbnail">Upload Picture</label>
+              <input type="file" name="image" id="thumbnail" />
+              <!-- for preview--- onchange="getImagePreview(event)" -->
             </div>
-            <div class="post__likes">
-              <i class="far fa-thumbs-up"></i>
-              <span class="likes__count"><%-post.likes.length%></span>
-            </div>
-            <div class="post__dislikes">
-              <i class="far fa-thumbs-down"></i>
-              <span class="dislikes__count"><%-post.dislikes.length %></span>
-            </div>
-          </div>
-        </div>
-        <div class="post__author">
-          <a href="/api/users/profile/<%- post.user._id %>">
-            <div class="post__author-avatar">
-              <img src="<%- post.user.profilePhoto %>" alt="" />
-            </div>
-            <div class="post__author-info">
-              <h5>By: <%- post.user.userName %></h5>
-              <small
-                ><%= moment(post.createdAt).format('hh:mm a DD MMM YYYY')
-                %></small
-              >
-            </div>
-          </a>
-        </div>
-        <div class="singlepost__thumbnail">
-          <img src="<%- post.image %>" alt="" />
-        </div>
-        <p><%- post.description %></p>
-        <!-- Like and dislike buttons side by side -->
-        <div class="like-dislike">
-          <form action="/api/posts/likes" method="post">
-            <input
-              style="display: none"
-              name="postId"
-              value="<%- post._id %>"
-            />
-            <button class="like-btn">
-              <i class="far fa-thumbs-up"></i> Like
-            </button>
-          </form>
-          <form action="/api/posts/dislikes" method="post">
-            <input
-              style="display: none"
-              name="postId"
-              value="<%- post._id %>"
-            />
-            <button class="dislike-btn">
-              <i class="far fa-thumbs-down"></i> Dislike
-            </button>
+            <div id="preview"></div>
+            <button type="submit" class="btn">Add Blog</button>
           </form>
         </div>
-
-        <!-- Comment box -->
-        <div class="comments">
-          <% if(post.comments!= '' ) { %>
-            <% post.comments.forEach((comment,index)=>{ %>
-            <hr class="comment-separator" />
-            <p>
-              <%- comment.user.userName %>: <%- comment.description %>
-            </p>
-            <% }) %>
-          <% } %>
-        </div>
-        <div class="comment-box">
-          <form method="post" action="/api/comments/">
-            <textarea placeholder="Add your comment" name="description"></textarea>
-            <input type="hidden" name="postId" value="<%- post._id%>">
-            <button type="submit" class="comment-btn">Comment</button>
-          </form>
-        </div>
-      </div>
-    </section>
+      </section>
 
     <!-- ABOUT -->
 
@@ -201,6 +150,6 @@
       </div>
     </footer>
 
-    <script src="../../js/main.js"></script>
+    <script src="http://localhost:3000/js/main.js"></script>
   </body>
 </html>

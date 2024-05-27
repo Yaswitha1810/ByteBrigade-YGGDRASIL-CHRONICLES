@@ -94,6 +94,7 @@ const fetchPostCtrl = expressAsyncHandler(async (req, res) => {
       .populate("user")
       .populate("likes")
       .populate("dislikes")
+      .populate("comments")
       .sort({ _id: -1 });
     await Post.findByIdAndUpdate(
       id,
@@ -108,13 +109,28 @@ const fetchPostCtrl = expressAsyncHandler(async (req, res) => {
   }
 });
 
-//update post
-const updatePostCtrl = expressAsyncHandler(async (req, res) => {
+//get update page
+const getUpdatePageCtrl = expressAsyncHandler(async (req,res)=>{
   const { id } = req.params;
   validateMongodbId(id);
   try {
+    const  post = await Post.findById(id)
+    const categories = await Category.find({});
+    res.render("edit_blog", { post, categories });
+  } catch (error) {
+    res.json(error);
+  }
+});
+
+//update post
+const updatePostCtrl = expressAsyncHandler(async (req, res) => {
+  console.log(req.body);
+  const { postId } = req.body;
+  console.log(postId);
+  validateMongodbId(postId);
+  try {
     const post = await Post.findByIdAndUpdate(
-      id,
+      postId,
       {
         //update the properties in body
         ...req.body,
@@ -124,7 +140,8 @@ const updatePostCtrl = expressAsyncHandler(async (req, res) => {
         new: true,
       }
     );
-    res.json(post);
+    console.log(post);
+    res.redirect("/api/posts/"+post._id);
   } catch (error) {
     res.json(error);
   }
@@ -240,6 +257,7 @@ module.exports = {
   fetchPostsCtrl,
   fetchCategoryPostCtrl,
   fetchPostCtrl,
+  getUpdatePageCtrl,
   updatePostCtrl,
   deletePostCtrl,
   toggleAddLikeToPostCtrl,

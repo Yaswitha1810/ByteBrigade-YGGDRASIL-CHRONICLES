@@ -40,6 +40,12 @@ const postSchema = new mongoose.Schema({
             ref: "User"
         }
     ],
+    comments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Comment"
+        }
+    ],
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
@@ -59,6 +65,12 @@ const postSchema = new mongoose.Schema({
     timestamps: true,
     }
 );
+//virtual method to populate post comment
+// postSchema.virtual("comments", {
+//     ref: "Comment",
+//     foreignField: "post",
+//     localField: "_id",
+//   });
 
 const Post = mongoose.model("Post",postSchema);
 
